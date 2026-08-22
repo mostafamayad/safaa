@@ -171,21 +171,22 @@ body {
 .card-crown { display: flex; justify-content: center; margin-bottom: 25px; opacity: 0.9; }
 
 .couple-profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(15px, 4vw, 30px);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    gap: 5px;
     margin-bottom: 25px;
+    width: 100%;
 }
 .profile-col {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 .c-photo {
-    width: clamp(90px, 25vw, 120px); 
-    height: clamp(90px, 25vw, 120px);
+    width: clamp(85px, 24vw, 115px); 
+    height: clamp(85px, 24vw, 115px);
     border-radius: 50%;
     border: 2px solid var(--gold); 
     padding: 4px;
@@ -200,17 +201,19 @@ body {
     color: var(--gold-light);
     text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
     line-height: 1;
+    text-align: center;
 }
 
 .profile-heart {
     display: flex;
     align-items: center;
+    justify-content: center;
+    height: clamp(85px, 24vw, 115px); /* Matches photo height perfectly to align dead center */
     color: var(--gold);
-    margin-top: -35px; /* Adjust to sit exactly between photos */
 }
 .profile-heart svg {
-    width: clamp(25px, 6vw, 35px);
-    height: clamp(25px, 6vw, 35px);
+    width: clamp(22px, 5vw, 30px);
+    height: clamp(22px, 5vw, 30px);
     filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
 }
 
@@ -219,24 +222,25 @@ body {
 .card-divider { height: 1px; width: 50%; margin: 0 auto 25px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.6), transparent); }
 
 /* Upgraded Detail Rows */
-.card-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; text-align: right; }
+.card-details { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
 .cd-row { 
-    display: flex; align-items: center; gap: 12px; 
+    display: flex; align-items: center; justify-content: center; gap: 10px; 
     background: rgba(255,255,255,0.03); 
-    padding: clamp(8px, 3vw, 12px) clamp(10px, 3vw, 15px); 
+    padding: clamp(10px, 3vw, 14px); 
     border-radius: 12px; 
     border: 1px solid rgba(212,175,55,0.15); 
 }
 .cd-icon { color: var(--gold); display: flex; align-items: center; }
-.cd-text { font-size: clamp(0.85rem, 3.5vw, 0.95rem); color: #FFFFFF; font-weight: 400; letter-spacing: 0.5px; }
+.cd-text { font-size: clamp(0.9rem, 3.8vw, 1rem); color: #FFFFFF; font-weight: 400; letter-spacing: 0.5px; text-align: center; }
 
 /* Upgraded Countdown */
-.card-countdown { display: flex; justify-content: center; gap: clamp(6px, 2vw, 10px); direction: ltr; margin-bottom: 30px; }
+.card-countdown { display: flex; justify-content: space-between; gap: clamp(6px, 1.5vw, 10px); direction: ltr; margin-bottom: 30px; width: 100%; }
 .cbox { 
+    flex: 1; /* Perfectly equal widths */
     background: rgba(255,255,255,0.03); 
     border: 1px solid rgba(212,175,55,0.25); 
     border-radius: 12px; 
-    width: clamp(55px, 14vw, 65px); height: clamp(55px, 14vw, 65px); 
+    padding: 10px 0;
     display: flex; flex-direction: column; align-items: center; justify-content: center; 
 }
 .cnum { font-family: var(--f-en); font-size: clamp(1.3rem, 5vw, 1.7rem); color: #FFFFFF; line-height: 1.1; font-weight: 600; }
@@ -245,9 +249,9 @@ body {
 /* Refined Map Button */
 .card-map-btn {
     display: flex; justify-content: center; align-items: center; width: 100%; padding: clamp(12px, 4vw, 16px);
-    background: transparent;
+    background: rgba(212, 175, 55, 0.05); /* Slight elegant tint */
     color: var(--gold-light); font-weight: 600; font-size: clamp(0.95rem, 4vw, 1.1rem);
-    text-decoration: none; border-radius: 30px;
+    text-decoration: none; border-radius: 12px; /* Matches other boxes precisely */
     border: 1px solid var(--gold);
     transition: all 0.3s ease;
 }
