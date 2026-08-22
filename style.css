@@ -24,8 +24,6 @@ body {
     background-color: var(--bg-dark);
     font-family: var(--f-body);
     color: var(--white);
-    /* Extra space to allow the auto-scroll timeline */
-    height: 6000px; 
 }
 
 /* ── UI ELEMENTS ── */

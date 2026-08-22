@@ -1,4 +1,4 @@
-﻿// ── REGISTER GSAP PLUGINS ──
+// ── REGISTER GSAP PLUGINS ──
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // ── AUDIO & SFX ──
@@ -109,7 +109,7 @@ const tl = gsap.timeline({
         trigger: "#cinema-container",
         pin: true,
         start: "top top",
-        end: "+=6000",
+        end: "+=4500", // Smooth optimized scroll distance
         scrub: 1
     }
 });
@@ -141,12 +141,12 @@ tl
   
   // 7. Fade out orbs, bring in the card, and kill flash FAST
   .to(".orb", { opacity: 0, duration: 0.1 }, "reveal")
-  .to("#flash", { opacity: 0, duration: 1.5 }, "reveal") // Fades out completely while card rises
+  .to("#flash", { opacity: 0, duration: 0.5 }, "reveal") // Fades out ultra fast so it doesn't get stuck
   .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
   .to("#invitation-card", { opacity: 1, y: "-50%", duration: 3 }, "reveal")
   
-  // 8. Safety check: ensure flash is completely hidden
-  .set("#flash", { display: "none" }, "reveal+=1.5");
+  // 8. Empty buffer at the end guarantees the animation finishes exactly before you hit the bottom scroll limit
+  .to({}, { duration: 1.5 });
 
 
 // ── COUNTDOWN ──
