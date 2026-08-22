@@ -100,11 +100,12 @@ body {
 .orb-gold::before { background: var(--gold); box-shadow: 0 0 80px 40px var(--gold); }
 .orb-silver::before { background: #FDFBF7; box-shadow: 0 0 80px 40px #FDFBF7; }
 .orb-name {
-    position: absolute; top: 80px;
+    position: absolute; 
+    top: 55px; 
+    left: 50%; transform: translateX(-50%);
     font-family: var(--f-title); 
-    font-size: 3.5rem; /* Much bigger */
-    color: #FFFFFF; /* Pure white */
-    /* Extremely strong shadow to stand out against the bright light and palace */
+    font-size: 12vw; /* Perfectly scales on any phone */
+    color: #FFFFFF;
     text-shadow: 0 5px 15px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.8), 0 0 40px var(--gold);
     opacity: 1;
     white-space: nowrap;
@@ -114,9 +115,9 @@ body {
 /* ── CINEMATIC FLASH ── */
 #flash {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
-    width: 10vw; height: 10vw; border-radius: 50%;
+    width: 25vw; height: 25vw; border-radius: 50%;
     background: #FFFFFF; 
-    box-shadow: 0 0 100px 50px #FFF, 0 0 300px 150px var(--gold), 0 0 600px 300px #FFF;
+    box-shadow: 0 0 100px 50px #FFF, 0 0 200px 100px var(--gold), 0 0 400px 200px #FFF;
     z-index: 6; opacity: 0;
     mix-blend-mode: screen;
 }
@@ -161,11 +162,10 @@ body {
 /* Fixed Typography Colors - No more red/orange shadow bleed */
 .card-names { 
     font-family: var(--f-title); 
-    font-size: 3rem; 
+    font-size: 11vw; /* Perfect width for mobile */
     color: var(--gold-light); 
     line-height: 1; 
     margin-bottom: 5px; 
-    /* Removed heavy black shadows that were muddying the color, kept it crisp */
     text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 .amp { font-family: var(--f-en); font-size: 1.5rem; color: var(--gold); font-style: italic; }

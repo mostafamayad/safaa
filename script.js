@@ -95,14 +95,14 @@ tl
   .to("#palace-bg", { opacity: 1, scale: 1, duration: 4 }, "-=2")
   .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4")
 
-  // 5. The Orbs (Lights) enter magnetically
-  .to("#orb-h", { left: "42%", scale: 1.8, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
-  .to("#orb-s", { left: "58%", scale: 1.8, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
+  // 5. The Orbs (Lights) enter magnetically (stopped further apart for mobile screens)
+  .to("#orb-h", { left: "25%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
+  .to("#orb-s", { left: "75%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
   
   // 6. Collision & Cinematic Flash
   .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
   .to("#orb-s", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
-  .to("#flash", { opacity: 1, scale: 20, duration: 1.5, ease: "expo.out" }, "collide+=0.8")
+  .to("#flash", { opacity: 1, scale: 15, duration: 1.5, ease: "expo.out" }, "collide+=0.8")
   
   // 7. Fade out orbs, bring in the card
   .to(".orb", { opacity: 0, duration: 0.1 }, "reveal")
