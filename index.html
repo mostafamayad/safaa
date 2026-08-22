@@ -1,234 +1,114 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#0a0f1e">
-<title>حمدي & صفاء — ٣٠ أغسطس ٢٠٢٦</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
-<!-- Background Music -->
-<audio id="bg-music" loop preload="none">
-  <source src="https://cdn.pixabay.com/audio/2022/11/17/audio_febc508520.mp3" type="audio/mpeg">
-</audio>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>دعوة خطوبة | حمدي وصفاء</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
-<!-- ==================== SCENE 0: OPENING ==================== -->
-<section id="s0" class="scene scene-night">
-  <div class="night-bg parallax-bg" data-speed="0.3"></div>
-  <canvas id="stars-cv"></canvas>
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.pixabay.com/audio/2022/11/17/audio_febc508520.mp3" type="audio/mpeg">
+    </audio>
 
-  <div class="s0-content">
-    <div class="opening-line line-1">في ليلة من الليالي...</div>
-    <div class="opening-line line-2">كانت فيه حكاية لازم الكل يعرفها</div>
-    <div class="opening-title">
-      <span class="ot-name">حمدي</span>
-      <span class="ot-amp">&</span>
-      <span class="ot-name">صفاء</span>
-    </div>
-    <div class="opening-date">٣٠ أغسطس ٢٠٢٦</div>
-    <div class="scroll-cue">
-      <span>ابدأ الرحلة</span>
-      <div class="cue-dots"><div></div><div></div><div></div></div>
-    </div>
-  </div>
-</section>
+    <!-- Music Toggle -->
+    <button id="music-toggle" class="music-btn" aria-label="تشغيل الموسيقى">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+    </button>
 
-<!-- ==================== SCENE 1: HAMDY WORLD ==================== -->
-<section id="s1" class="scene scene-night">
-  <div class="night-bg parallax-bg" data-speed="0.5"></div>
-  <canvas class="firefly-cv"></canvas>
+    <!-- Background Image (Heaven Hall) -->
+    <div class="bg-image"></div>
+    <!-- Soft Warm Overlay (No Black) -->
+    <div class="bg-overlay"></div>
 
-  <div class="scene-text st-right">
-    <div class="scene-num">01</div>
-    <h2 class="scene-h">حمدي</h2>
-    <p class="scene-p">شاب بقلب كبير، وابتسامة بتنوّر المكان</p>
-  </div>
+    <!-- Main Invitation Container -->
+    <main class="invitation-wrapper">
+        <div class="glass-card fade-up">
+            
+            <!-- Top Decoration -->
+            <div class="floral-deco">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M12 2C12 2 14 6 18 6C18 6 16 10 12 10C8 10 6 6 6 6C10 6 12 2 12 2Z"></path>
+                    <path d="M12 10V22"></path>
+                    <path d="M12 16C12 16 15 17 17 21C17 21 13 22 12 18"></path>
+                    <path d="M12 16C12 16 9 17 7 21C7 21 11 22 12 18"></path>
+                </svg>
+            </div>
 
-  <div class="char-wrap char-hamdy" id="char-hamdy">
-    <img src="assets/hamdy.jpg" alt="حمدي" class="char-img">
-    <div class="char-shadow"></div>
-    <div class="thought-bubble" id="hamdy-thought">
-      <span>هي فين؟ ✨</span>
-    </div>
-  </div>
-</section>
+            <!-- Welcome Text -->
+            <p class="intro-text">بكل الحب والود، ندعوكم لمشاركتنا فرحتنا</p>
 
-<!-- ==================== SCENE 2: SAFAA WORLD ==================== -->
-<section id="s2" class="scene scene-night">
-  <div class="night-bg parallax-bg" data-speed="0.5"></div>
-  <canvas class="firefly-cv"></canvas>
+            <!-- The Couple's Real Photos in Rings -->
+            <div class="couple-rings">
+                <div class="ring hamdy-ring">
+                    <img src="assets/hamdy_real.jpg" alt="العريس حمدي">
+                </div>
+                <div class="ring safaa-ring">
+                    <img src="assets/safaa_real.jpg" alt="العروسة صفاء">
+                </div>
+                <div class="ring-heart">🤍</div>
+            </div>
 
-  <div class="scene-text st-left">
-    <div class="scene-num">02</div>
-    <h2 class="scene-h">صفاء</h2>
-    <p class="scene-p">بنت بروح تملى الدنيا ضحكة وأمل</p>
-  </div>
+            <!-- Names -->
+            <h1 class="couple-names">حمدي &amp; صفاء</h1>
+            <p class="event-title">حفل الخطوبة</p>
 
-  <div class="char-wrap char-safaa" id="char-safaa">
-    <img src="assets/safaa.jpg" alt="صفاء" class="char-img">
-    <div class="char-shadow"></div>
-    <div class="thought-bubble tb-left" id="safaa-thought">
-      <span>هو فين؟ 💛</span>
-    </div>
-  </div>
-</section>
+            <div class="divider"></div>
 
-<!-- ==================== SCENE 3: THE MEETING ==================== -->
-<section id="s3" class="scene scene-night scene-meeting">
-  <div class="night-bg parallax-bg" data-speed="0.2"></div>
+            <!-- Event Details -->
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="d-icon">📅</span>
+                    <span class="d-title">الموعد</span>
+                    <span class="d-info">الأحد، ٣٠ أغسطس ٢٠٢٦<br>الساعة ٨:٠٠ مساءً</span>
+                </div>
+                <div class="detail-item">
+                    <span class="d-icon">📍</span>
+                    <span class="d-title">المكان</span>
+                    <span class="d-info">HEAVEN HALL<br>محلة روح - طنطا</span>
+                </div>
+            </div>
 
-  <!-- Two chars walking toward each other -->
-  <div class="meet-hamdy" id="meet-h">
-    <img src="assets/hamdy.jpg" alt="حمدي" class="meet-img">
-  </div>
-  <div class="meet-safaa" id="meet-s">
-    <img src="assets/safaa.jpg" alt="صفاء" class="meet-img meet-img-flip">
-  </div>
+            <!-- Countdown -->
+            <div class="countdown-container">
+                <p class="c-title">نعد الأيام للقائكم</p>
+                <div class="countdown-boxes">
+                    <div class="c-box">
+                        <span id="c-days">00</span>
+                        <small>يوم</small>
+                    </div>
+                    <div class="c-box">
+                        <span id="c-hours">00</span>
+                        <small>ساعة</small>
+                    </div>
+                    <div class="c-box">
+                        <span id="c-mins">00</span>
+                        <small>دقيقة</small>
+                    </div>
+                    <div class="c-box">
+                        <span id="c-secs">00</span>
+                        <small>ثانية</small>
+                    </div>
+                </div>
+            </div>
 
-  <!-- Center burst when they meet -->
-  <div class="meet-center" id="meet-center">
-    <div class="meet-glow"></div>
-    <div class="meet-hxs">H × S</div>
-    <div class="meet-hxs-ar">حمدي × صفاء</div>
-  </div>
-</section>
+            <!-- Elegant Map Button -->
+            <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" class="btn-luxury">
+                الوصول للقاعة بالخريطة
+            </a>
 
-<!-- ==================== SCENE 4: HEAVEN HALL ==================== -->
-<section id="s4" class="scene scene-hall">
-  <div class="hall-bg parallax-bg" data-speed="0.4"></div>
-  <div class="hall-overlay"></div>
-
-  <div class="hall-content">
-    <div class="hall-tag">المكان الذي اختارناه لفرحتنا</div>
-    <h2 class="hall-name">HEAVEN HALL</h2>
-    <p class="hall-sub">محلة روح &nbsp;—&nbsp; طنطا &nbsp;—&nbsp; الغربية</p>
-    <div class="hall-deco">
-      <div class="hd-line"></div><div class="hd-gem">✦</div><div class="hd-line"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== SCENE 5: INVITATION CARD ==================== -->
-<section id="s5" class="scene scene-card">
-  <div class="night-bg parallax-bg" data-speed="0.3"></div>
-
-  <div class="inv-card" id="inv-card">
-    <div class="ic-top-deco"></div>
-
-    <div class="ic-portraits">
-      <div class="ic-portrait">
-        <img src="assets/hamdy_real.jpg" alt="حمدي">
-        <span>حمدي</span>
-      </div>
-      <div class="ic-amp">❤</div>
-      <div class="ic-portrait">
-        <img src="assets/safaa_real.jpg" alt="صفاء">
-        <span>صفاء</span>
-      </div>
-    </div>
-
-    <div class="ic-msg">يسعدنا نعزمكم على فرحتنا</div>
-    <div class="ic-event">حفل الخطوبة</div>
-
-    <div class="ic-details">
-      <div class="ic-detail">
-        <div class="icd-icon">📅</div>
-        <div>
-          <div class="icd-label">التاريخ</div>
-          <div class="icd-val">٣٠ أغسطس ٢٠٢٦</div>
         </div>
-      </div>
-      <div class="ic-detail">
-        <div class="icd-icon">🕗</div>
-        <div>
-          <div class="icd-label">الوقت</div>
-          <div class="icd-val">٨:٠٠ مساءً</div>
-        </div>
-      </div>
-      <div class="ic-detail">
-        <div class="icd-icon">📍</div>
-        <div>
-          <div class="icd-label">المكان</div>
-          <div class="icd-val">HEAVEN HALL<br><small>محلة روح — طنطا</small></div>
-        </div>
-      </div>
-    </div>
+    </main>
 
-    <div class="ic-bottom-deco"></div>
-  </div>
-</section>
-
-<!-- ==================== SCENE 6: COUNTDOWN ==================== -->
-<section id="s6" class="scene scene-count">
-  <div class="night-bg parallax-bg" data-speed="0.3"></div>
-
-  <div class="count-wrap">
-    <div class="cw-title">العد التنازلي لأسعد ليلة</div>
-    <div class="cw-grid">
-      <div class="cw-box">
-        <div class="cw-num" id="c-days">00</div>
-        <div class="cw-lbl">يوم</div>
-      </div>
-      <div class="cw-sep">:</div>
-      <div class="cw-box">
-        <div class="cw-num" id="c-hours">00</div>
-        <div class="cw-lbl">ساعة</div>
-      </div>
-      <div class="cw-sep">:</div>
-      <div class="cw-box">
-        <div class="cw-num" id="c-mins">00</div>
-        <div class="cw-lbl">دقيقة</div>
-      </div>
-      <div class="cw-sep">:</div>
-      <div class="cw-box">
-        <div class="cw-num" id="c-secs">00</div>
-        <div class="cw-lbl">ثانية</div>
-      </div>
-    </div>
-    <p class="cw-quote">"كل لحظة تقربنا من أجمل يوم في حياتنا"</p>
-  </div>
-</section>
-
-<!-- ==================== SCENE 7: FINALE + MAP ==================== -->
-<section id="s7" class="scene scene-finale">
-  <div class="hall-bg parallax-bg" data-speed="0.2"></div>
-  <div class="finale-overlay"></div>
-
-  <div class="finale-chars">
-    <img src="assets/hamdy.jpg" class="fin-char fin-h" alt="">
-    <img src="assets/safaa.jpg" class="fin-char fin-s" alt="">
-  </div>
-
-  <div class="finale-content">
-    <div class="fin-quote">"وجودكم هو النور اللي هيكمّل فرحتنا"</div>
-    <div class="fin-names">حمدي & صفاء</div>
-    <div class="fin-date">٣٠ • ٠٨ • ٢٠٢٦</div>
-
-    <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic"
-       target="_blank" rel="noopener" class="map-btn">
-      <span class="map-icon">📍</span>
-      <span>افتح الخريطة</span>
-    </a>
-
-    <div class="fin-sig">H × S</div>
-    <div class="fin-tagline">مستنيينكم 🤍</div>
-  </div>
-</section>
-
-<!-- MUSIC BTN -->
-<button id="music-btn" class="music-btn muted" aria-label="موسيقى">
-  <div class="mb-bars">
-    <div class="mb-b"></div><div class="mb-b"></div>
-    <div class="mb-b"></div><div class="mb-b"></div><div class="mb-b"></div>
-  </div>
-</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 </body>
 </html>
