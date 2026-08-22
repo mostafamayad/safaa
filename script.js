@@ -1,3 +1,9 @@
+// ── FORCE TOP ON REFRESH ──
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // ── REGISTER GSAP PLUGINS ──
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
