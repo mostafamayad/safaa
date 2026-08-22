@@ -152,13 +152,13 @@ tl
   .to("#palace-bg", { opacity: 1, scale: 1, duration: 4 }, "-=2")
   .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4")
 
-  // 3. The Orbs appear FAST from the edges...
-  .to("#orb-h", { left: "32%", scale: 1.5, opacity: 1, duration: 1.5, ease: "power3.out", onStart: () => { if(tl.scrollTrigger.direction === 1) playWhoosh(); } }, "orbs")
-  .to("#orb-s", { left: "68%", scale: 1.5, opacity: 1, duration: 1.5, ease: "power3.out" }, "orbs")
-  
+  // 3. Orbs flash in immediately as palace finishes (no gap)
+  .to("#orb-h", { left: "32%", scale: 1.5, opacity: 1, duration: 1.5, ease: "power3.out", onStart: () => { if(tl.scrollTrigger.direction === 1) playWhoosh(); } }, "-=1")
+  .to("#orb-s", { left: "68%", scale: 1.5, opacity: 1, duration: 1.5, ease: "power3.out" }, "<")
+
   // ...then slowly float toward each other (romantic approach)
-  .to("#orb-h", { left: "38%", duration: 4, ease: "sine.inOut" }, "orbs+=1.5")
-  .to("#orb-s", { left: "62%", duration: 4, ease: "sine.inOut" }, "orbs+=1.5")
+  .to("#orb-h", { left: "38%", duration: 4, ease: "sine.inOut" }, "+=0")
+  .to("#orb-s", { left: "62%", duration: 4, ease: "sine.inOut" }, "<")
   
   // 4. Collision & Cinematic Flash
   .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
