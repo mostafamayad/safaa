@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
         <div class="mb-bars"><div class="mb-b"></div><div class="mb-b"></div><div class="mb-b"></div><div class="mb-b"></div></div>
     </button>
 
-    <div class="scroll-instruction">
+    <div class="scroll-instruction" id="scroll-hint">
         <span>اسحب لتبدأ الرحلة</span>
         <div class="scroll-line"></div>
     </div>
@@ -38,7 +38,7 @@
         <div id="text-1" class="cinema-text">في ليلة من أجمل الليالي...</div>
         <div id="text-2" class="cinema-text">التقى النور بالنور...</div>
 
-        <!-- The Light Orbs (Representing Hamdy & Safaa) -->
+        <!-- The Light Orbs -->
         <div id="orb-h" class="orb orb-gold"><div class="orb-name">حمدي</div></div>
         <div id="orb-s" class="orb orb-silver"><div class="orb-name">صفاء</div></div>
 
@@ -48,7 +48,9 @@
         <!-- The Final Invitation Card -->
         <div id="invitation-card" class="premium-card">
             
-            <div class="card-crown">✧ ✧ ✧</div>
+            <div class="card-crown">
+                <svg width="40" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
             
             <!-- Real Photos -->
             <div class="couple-photos">
@@ -62,18 +64,24 @@
 
             <div class="card-divider"></div>
 
-            <!-- Details -->
+            <!-- Professional Details with SVGs -->
             <div class="card-details">
                 <div class="cd-row">
-                    <span class="cd-icon">📅</span>
+                    <span class="cd-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </span>
                     <span class="cd-text">الأحد، ٣٠ أغسطس ٢٠٢٦</span>
                 </div>
                 <div class="cd-row">
-                    <span class="cd-icon">🕗</span>
+                    <span class="cd-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </span>
                     <span class="cd-text">الساعة ٨:٠٠ مساءً</span>
                 </div>
                 <div class="cd-row">
-                    <span class="cd-icon">📍</span>
+                    <span class="cd-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </span>
                     <span class="cd-text">قاعة HEAVEN HALL - محلة روح</span>
                 </div>
             </div>
@@ -96,12 +104,9 @@
 
     </div>
 
-    <!-- Scripts -->
-    <!-- Lenis for ultra-smooth scrolling -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <!-- GSAP for timeline animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
 </body>
 </html>

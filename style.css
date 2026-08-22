@@ -1,11 +1,11 @@
-/* ============================================
+﻿/* ============================================
    HEAVEN // 30.08 — The "Perfected Scrollytelling"
    ============================================ */
 
 :root {
     --bg-dark: #030614;
     --gold: #D4AF37;
-    --gold-light: #F3E5AB;
+    --gold-light: #E8D399; /* Pure smooth gold */
     --white: #FFFFFF;
     
     --f-title: 'Aref Ruqaa Ink', serif;
@@ -25,8 +25,8 @@ body {
 .scroll-instruction {
     position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 10px;
-    z-index: 100; opacity: 0.7; color: var(--gold-light); font-size: 0.8rem; letter-spacing: 2px;
-    pointer-events: none; transition: opacity 0.5s;
+    z-index: 100; opacity: 0.8; color: var(--gold-light); font-size: 0.8rem; letter-spacing: 2px;
+    pointer-events: none;
 }
 .scroll-line {
     width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent);
@@ -79,7 +79,7 @@ body {
 .cinema-text {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     font-family: var(--f-title); font-size: clamp(2rem, 8vw, 4rem);
-    color: #FDFBF7; /* Bright white/cream */
+    color: #FDFBF7;
     text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 30px rgba(212, 175, 55, 0.8), 0 0 50px rgba(0,0,0,1);
     font-weight: 700;
     text-align: center; width: 90%; z-index: 4; opacity: 0;
@@ -97,7 +97,7 @@ body {
     width: 60px; height: 60px; border-radius: 50%;
     filter: blur(20px);
 }
-.orb-gold::before { background: #D4AF37; box-shadow: 0 0 80px 40px #D4AF37; }
+.orb-gold::before { background: var(--gold); box-shadow: 0 0 80px 40px var(--gold); }
 .orb-silver::before { background: #FDFBF7; box-shadow: 0 0 80px 40px #FDFBF7; }
 .orb-name {
     position: absolute; top: 60px;
@@ -110,60 +110,90 @@ body {
 #flash {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
     width: 100px; height: 100px; border-radius: 50%;
-    background: #FFF; box-shadow: 0 0 200px 100px #FFF, 0 0 400px 200px #D4AF37;
+    background: #FFF; box-shadow: 0 0 200px 100px #FFF, 0 0 400px 200px var(--gold);
     z-index: 6; opacity: 0;
 }
 
 /* ── INVITATION CARD (The Reveal) ── */
 #invitation-card {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%); /* Starts slightly lower */
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%);
     width: min(400px, 92vw);
-    background: rgba(3, 6, 20, 0.7); /* Darker glass for contrast */
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(212, 175, 55, 0.5);
+    background: rgba(10, 15, 25, 0.85); /* Deep luxurious glass */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 20px;
-    padding: 30px 20px;
+    padding: 35px 25px;
     text-align: center;
     z-index: 10; opacity: 0;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
-.card-crown { font-size: 1.2rem; color: var(--gold); margin-bottom: 20px; letter-spacing: 5px; }
+.card-crown { display: flex; justify-content: center; margin-bottom: 25px; opacity: 0.9; }
 
 .couple-photos { display: flex; justify-content: center; margin-bottom: 20px; }
 .c-photo {
-    width: 80px; height: 80px; border-radius: 50%;
+    width: 85px; height: 85px; border-radius: 50%;
     border: 2px solid var(--gold); padding: 3px;
-    background: var(--bg-dark); box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    background: var(--bg-dark); box-shadow: 0 15px 30px rgba(0,0,0,0.6);
 }
 .c-photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: top; }
 .ph-h { margin-left: -15px; z-index: 1; }
 .ph-s { margin-right: -15px; z-index: 2; }
 
-.card-names { font-family: var(--f-title); font-size: 2.8rem; color: var(--gold-light); line-height: 1; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-.amp { font-family: var(--f-en); font-size: 1.5rem; color: var(--gold); font-style: italic; }
-.card-event { font-family: var(--f-body); font-weight: 400; font-size: 1.2rem; letter-spacing: 2px; color: #FFFFFF; margin-bottom: 20px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-
-.card-divider { height: 1px; width: 60%; margin: 0 auto 20px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.5), transparent); }
-
-.card-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; text-align: right; padding: 0 10px; }
-.cd-row { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.4); padding: 10px 15px; border-radius: 8px; border-left: 2px solid var(--gold); }
-.cd-icon { font-size: 1.2rem; }
-.cd-text { font-size: 0.95rem; color: #FFFFFF; font-weight: 600; }
-
-.card-countdown { display: flex; justify-content: center; gap: 8px; direction: ltr; margin-bottom: 25px; }
-.cbox { background: rgba(0,0,0,0.6); border: 1px solid rgba(212,175,55,0.4); border-radius: 8px; width: 60px; height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.cnum { font-family: var(--f-en); font-size: 1.6rem; color: #FFFFFF; line-height: 1; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-.clbl { font-size: 0.65rem; color: var(--gold); font-weight: 600; }
-
-.card-map-btn {
-    display: block; width: 100%; padding: 14px;
-    background: linear-gradient(135deg, var(--gold), #9A7B2C);
-    color: var(--bg-dark); font-weight: 700; font-size: 1.1rem;
-    text-decoration: none; border-radius: 30px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
+/* Fixed Typography Colors - No more red/orange shadow bleed */
+.card-names { 
+    font-family: var(--f-title); 
+    font-size: 3rem; 
+    color: var(--gold-light); 
+    line-height: 1; 
+    margin-bottom: 5px; 
+    /* Removed heavy black shadows that were muddying the color, kept it crisp */
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
-.card-map-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(212,175,55,0.4); }
+.amp { font-family: var(--f-en); font-size: 1.5rem; color: var(--gold); font-style: italic; }
+.card-event { font-family: var(--f-body); font-weight: 400; font-size: 1.2rem; letter-spacing: 2px; color: #FFFFFF; margin-bottom: 25px; }
 
-.card-footer { margin-top: 15px; font-size: 0.85rem; color: #CCCCCC; font-weight: 600; }
+.card-divider { height: 1px; width: 50%; margin: 0 auto 25px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.6), transparent); }
+
+/* Upgraded Detail Rows */
+.card-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; text-align: right; }
+.cd-row { 
+    display: flex; align-items: center; gap: 12px; 
+    background: transparent; 
+    padding: 12px 15px; 
+    border-radius: 12px; 
+    border: 1px solid rgba(212,175,55,0.15); 
+}
+.cd-icon { color: var(--gold); display: flex; align-items: center; }
+.cd-text { font-size: 0.95rem; color: #FFFFFF; font-weight: 400; letter-spacing: 0.5px; }
+
+/* Upgraded Countdown */
+.card-countdown { display: flex; justify-content: center; gap: 10px; direction: ltr; margin-bottom: 30px; }
+.cbox { 
+    background: transparent; 
+    border: 1px solid rgba(212,175,55,0.25); 
+    border-radius: 12px; 
+    width: 65px; height: 65px; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+}
+.cnum { font-family: var(--f-en); font-size: 1.7rem; color: #FFFFFF; line-height: 1.1; font-weight: 600; }
+.clbl { font-size: 0.65rem; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Refined Map Button */
+.card-map-btn {
+    display: flex; justify-content: center; align-items: center; width: 100%; padding: 16px;
+    background: transparent;
+    color: var(--gold-light); font-weight: 600; font-size: 1.1rem;
+    text-decoration: none; border-radius: 30px;
+    border: 1px solid var(--gold);
+    transition: all 0.3s ease;
+}
+.card-map-btn:hover { 
+    background: var(--gold); 
+    color: var(--bg-dark); 
+    box-shadow: 0 10px 25px rgba(212,175,55,0.3); 
+    transform: translateY(-2px); 
+}
+
+.card-footer { margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; }

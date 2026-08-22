@@ -48,39 +48,42 @@ const tl = gsap.timeline({
         trigger: "#cinema-container",
         pin: true,
         start: "top top",
-        end: "+=6000", // 6000px of scrolling for the movie
+        end: "+=6000",
         scrub: 1
     }
 });
 
 tl
-  // 1. Text 1 fades in and out
-  .to("#text-1", { opacity: 1, duration: 2 })
+  // 1. Instantly fade out the scroll instruction as they start scrolling
+  .to("#scroll-hint", { opacity: 0, duration: 0.5 })
+  
+  // 2. Text 1 fades in and out
+  .to("#text-1", { opacity: 1, duration: 2 }, "-=0.5")
   .to("#text-1", { opacity: 0, duration: 2 }, "+=1")
   
-  // 2. Text 2 fades in and out
+  // 3. Text 2 fades in and out
   .to("#text-2", { opacity: 1, duration: 2 })
   .to("#text-2", { opacity: 0, duration: 2 }, "+=1")
 
-  // 3. Palace background rises from the dark
+  // 4. Palace background rises from the dark
   .to("#palace-bg", { opacity: 1, scale: 1, duration: 4 }, "-=2")
-  .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4") // darken it
+  .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4")
 
-  // 4. The Orbs (Lights) enter
+  // 5. The Orbs (Lights) enter
   .to("#orb-h", { left: "45%", opacity: 1, duration: 4 }, "orbs")
   .to("#orb-s", { left: "55%", opacity: 1, duration: 4 }, "orbs")
   
-  // 5. Collision & Flash
+  // 6. Collision & Flash
   .to("#orb-h", { left: "50%", duration: 1 }, "collide")
   .to("#orb-s", { left: "50%", duration: 1 }, "collide")
   .to("#flash", { opacity: 1, scale: 20, duration: 2 }, "collide")
   
-  // 6. Fade out orbs, bring in the card
+  // 7. Fade out orbs, bring in the card
   .to(".orb", { opacity: 0, duration: 0.1 })
   .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
   .to("#invitation-card", { opacity: 1, y: "-50%", duration: 3 }, "reveal")
   
-  // 7. Flash fades away, revealing the final scene perfectly
+  // 8. Flash fades away perfectly
   .to("#flash", { opacity: 0, duration: 3 }, "reveal+=1");
 
 
