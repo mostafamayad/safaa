@@ -156,9 +156,9 @@ tl
   .to("#orb-h", { left: "32%", scale: 1.5, opacity: 1, duration: 1.5, ease: "power3.out", onStart: () => { if(tl.scrollTrigger.direction === 1) playWhoosh(); } }, "-=3")
   .to("#orb-s", { left: "68%", scale: 1.5, opacity: 1, duration: 1.5, ease: "power3.out" }, "<")
 
-  // ...approach each other faster (2 instead of 4)
-  .to("#orb-h", { left: "42%", duration: 2, ease: "sine.inOut" }, "+=0")
-  .to("#orb-s", { left: "58%", duration: 2, ease: "sine.inOut" }, "<")
+  // ...approach each other faster
+  .to("#orb-h", { left: "42%", duration: 0.8, ease: "sine.inOut" }, "+=0")
+  .to("#orb-s", { left: "58%", duration: 0.8, ease: "sine.inOut" }, "<")
   
   // 4. Collision — fast snap to center (0.3s)
   .to("#orb-h", { left: "50%", scale: 0.1, duration: 0.3, ease: "power4.in" }, "collide")
