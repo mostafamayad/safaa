@@ -106,8 +106,8 @@ tl
   .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4")
 
   // 5. The Orbs (Lights) enter magnetically (stopped further apart for mobile screens)
-  .to("#orb-h", { left: "25%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
-  .to("#orb-s", { left: "75%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
+  .to("#orb-h", { left: "30%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
+  .to("#orb-s", { left: "70%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
   
   // 6. Collision & Cinematic Flash
   .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
