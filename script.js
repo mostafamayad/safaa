@@ -1,8 +1,14 @@
-// ── FORCE TOP ON REFRESH ──
+// ── FORCE TOP ON REFRESH (BULLETPROOF) ──
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
+
+// Force top before the page unloads so the browser saves "0" as the state
+window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+
+// Force top slightly after load to beat delayed native restores on mobile
+window.addEventListener('load', () => setTimeout(() => window.scrollTo(0, 0), 10));
 
 // ── REGISTER GSAP PLUGINS ──
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
