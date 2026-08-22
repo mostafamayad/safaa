@@ -1,4 +1,4 @@
-﻿// ── INIT SMOOTH SCROLLING ──
+// ── INIT SMOOTH SCROLLING ──
 const lenis = new Lenis({ duration: 1.5, smooth: true });
 function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
 requestAnimationFrame(raf);
@@ -33,10 +33,36 @@ const mBtn = document.getElementById('music-btn');
 const bgm = document.getElementById('bg-music');
 let playing = false;
 if(bgm) bgm.volume = 0.5;
-mBtn.addEventListener('click', () => {
-    if(!playing) { bgm.play(); playing = true; mBtn.classList.add('playing'); }
-    else { bgm.pause(); playing = false; mBtn.classList.remove('playing'); }
+
+function startMusic() {
+    if(!playing && bgm) { 
+        bgm.play().then(() => {
+            playing = true; 
+            mBtn.classList.add('playing'); 
+        }).catch(e => console.log('Autoplay prevented:', e));
+    }
+}
+
+// Toggle via button
+mBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if(!playing) { 
+        startMusic(); 
+    } else { 
+        bgm.pause(); 
+        playing = false; 
+        mBtn.classList.remove('playing'); 
+    }
 });
+
+// Play immediately on first touch or click anywhere
+function playOnInteraction() {
+    startMusic();
+    document.removeEventListener('touchstart', playOnInteraction);
+    document.removeEventListener('click', playOnInteraction);
+}
+document.addEventListener('touchstart', playOnInteraction, { once: true });
+document.addEventListener('click', playOnInteraction, { once: true });
 
 // ── INITIAL SETUP ──
 gsap.set("#orb-h", { left: "-10%" });
