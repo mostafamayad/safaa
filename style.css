@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    HEAVEN // 30.08 — The "Ultra-Light Cinematic Video"
    ============================================ */
 
@@ -130,19 +130,19 @@ body {
     font-weight: 700;
 }
 
-/* ── CINEMATIC FLASH (Optimized: pure gradient, no mix-blend-mode) ── */
+/* ── CINEMATIC FLASH (Optimized & Softer) ── */
 #flash {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
     width: 25vw; height: 25vw; border-radius: 50%;
-    background: radial-gradient(circle, #FFFFFF 0%, rgba(212,175,55,0.8) 20%, transparent 60%);
+    background: radial-gradient(circle, #FFFFFF 0%, rgba(212,175,55,0.4) 20%, transparent 60%);
     z-index: 6; opacity: 0;
 }
 /* Horizontal Lens Flare */
 #flash::after {
     content: ''; position: absolute;
     top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 150vw; height: 8px;
-    background: radial-gradient(ellipse, #FFFFFF 0%, rgba(212,175,55,0.8) 30%, transparent 70%);
+    width: 150vw; height: 6px;
+    background: radial-gradient(ellipse, #FFFFFF 0%, rgba(212,175,55,0.5) 30%, transparent 70%);
 }
 
 /* ── INVITATION CARD (The Reveal, optimized without backdrop-filter) ── */
