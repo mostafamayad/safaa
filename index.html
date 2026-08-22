@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#030614">
-    <title>دعوة خطوبة | حمدي وصفاء</title>
+    <title>دعوة خطوبة | Hamdy & Safaa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=5">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -21,14 +21,15 @@
     </button>
 
     <div class="scroll-instruction" id="scroll-hint">
-        <span>اسحب لتبدأ الرحلة</span>
+        <span>المس الشاشة لتبدأ الرحلة</span>
         <div class="scroll-line"></div>
     </div>
 
     <!-- MAIN SCROLL CONTAINER -->
     <div id="cinema-container">
-        <!-- Canvas for Stars -->
-        <canvas id="stars"></canvas>
+        
+        <!-- Lightweight Static Stars (CSS based) -->
+        <div class="static-stars"></div>
 
         <!-- Background Image (Palace) -->
         <div id="palace-bg" style="background-image: url('assets/hall.jpg')"></div>
@@ -38,11 +39,11 @@
         <div id="text-1" class="cinema-text">في ليلة من أجمل الليالي...</div>
         <div id="text-2" class="cinema-text">التقى النور بالنور...</div>
 
-        <!-- The Light Orbs -->
-        <div id="orb-h" class="orb orb-gold"><div class="orb-name">حمدي</div></div>
-        <div id="orb-s" class="orb orb-silver"><div class="orb-name">صفاء</div></div>
+        <!-- The Light Orbs (Optimized Gradients) -->
+        <div id="orb-h" class="orb orb-gold"><div class="orb-name">Hamdy</div></div>
+        <div id="orb-s" class="orb orb-silver"><div class="orb-name">Safaa</div></div>
 
-        <!-- The Light Flash -->
+        <!-- The Light Flash (Optimized) -->
         <div id="flash"></div>
 
         <!-- The Final Invitation Card -->
@@ -54,17 +55,17 @@
             
             <!-- Real Photos -->
             <div class="couple-photos">
-                <div class="c-photo ph-h"><img src="assets/hamdy_real.jpg" alt="حمدي"></div>
-                <div class="c-photo ph-s"><img src="assets/safaa_real.jpg" alt="صفاء"></div>
+                <div class="c-photo ph-h"><img src="assets/hamdy_real.jpg" alt="Hamdy"></div>
+                <div class="c-photo ph-s"><img src="assets/safaa_real.jpg" alt="Safaa"></div>
             </div>
 
-            <!-- Names -->
-            <h1 class="card-names">حمدي <span class="amp">&amp;</span> صفاء</h1>
+            <!-- Names in English -->
+            <h1 class="card-names">Hamdy <span class="amp">&amp;</span> Safaa</h1>
             <p class="card-event">حفل الخطوبة</p>
 
             <div class="card-divider"></div>
 
-            <!-- Professional Details with SVGs -->
+            <!-- Professional Details -->
             <div class="card-details">
                 <div class="cd-row">
                     <span class="cd-icon">
@@ -104,9 +105,10 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <!-- Only Core GSAP and ScrollToPlugin for Auto-Scroll Video Effect -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js?v=5"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="script.js?v=6"></script>
 </body>
 </html>

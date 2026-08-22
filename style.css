@@ -1,5 +1,5 @@
-/* ============================================
-   HEAVEN // 30.08 — The "Perfected Scrollytelling"
+﻿/* ============================================
+   HEAVEN // 30.08 — The "Ultra-Light Cinematic Video"
    ============================================ */
 
 :root {
@@ -13,16 +13,19 @@
     --f-body: 'Cairo', sans-serif;
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html, body {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
 }
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     background-color: var(--bg-dark);
     font-family: var(--f-body);
     color: var(--white);
+    /* Extra space to allow the auto-scroll timeline */
+    height: 6000px; 
 }
 
 /* ── UI ELEMENTS ── */
@@ -44,8 +47,8 @@ body {
 .music-btn {
     position: fixed; top: 20px; right: 20px; z-index: 100;
     width: 45px; height: 45px; border-radius: 50%;
-    background: rgba(3, 6, 20, 0.5); border: 1px solid rgba(212, 175, 55, 0.4);
-    backdrop-filter: blur(5px); cursor: pointer;
+    background: rgba(3, 6, 20, 0.8); border: 1px solid rgba(212, 175, 55, 0.4);
+    cursor: pointer;
     display: flex; align-items: center; justify-content: center; gap: 3px;
     transition: all 0.3s;
 }
@@ -60,11 +63,22 @@ body {
 
 /* ── CINEMA CONTAINER (Pinned) ── */
 #cinema-container {
-    position: relative; width: 100vw; height: 100vh; overflow: hidden;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden;
+    z-index: 1;
 }
 
-#stars {
+/* Static lightweight CSS stars */
+.static-stars {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 240px 80px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 300px 150px, #fff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 350px 350px;
 }
 
 #palace-bg {
@@ -89,7 +103,7 @@ body {
     text-align: center; width: 90%; z-index: 4; opacity: 0;
 }
 
-/* ── ORBS (Magical Light) ── */
+/* ── ORBS (Optimized: No heavy box-shadow or filter) ── */
 .orb {
     position: absolute; top: 50%; transform: translateY(-50%);
     width: 1px; height: 1px;
@@ -98,17 +112,17 @@ body {
 }
 .orb::before {
     content: ''; position: absolute;
-    width: 60px; height: 60px; border-radius: 50%;
-    filter: blur(20px);
+    width: 120px; height: 120px; border-radius: 50%;
 }
-.orb-gold::before { background: var(--gold); box-shadow: 0 0 80px 40px var(--gold); }
-.orb-silver::before { background: #FDFBF7; box-shadow: 0 0 80px 40px #FDFBF7; }
+.orb-gold::before { background: radial-gradient(circle, #D4AF37 0%, rgba(212,175,55,0.4) 30%, transparent 70%); }
+.orb-silver::before { background: radial-gradient(circle, #FFFFFF 0%, rgba(255,255,255,0.4) 30%, transparent 70%); }
+
 .orb-name {
     position: absolute; 
     top: 55px; 
     left: 50%; transform: translateX(-50%);
-    font-family: var(--f-title); 
-    font-size: clamp(1.8rem, 7vw, 2.5rem); /* Prevents overflow while staying massive */
+    font-family: var(--f-en); 
+    font-size: clamp(1.8rem, 7vw, 2.5rem); 
     color: #FFFFFF;
     text-shadow: 0 5px 15px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.8), 0 0 40px var(--gold);
     opacity: 1;
@@ -116,39 +130,32 @@ body {
     font-weight: 700;
 }
 
-/* ── CINEMATIC FLASH ── */
+/* ── CINEMATIC FLASH (Optimized: pure gradient, no mix-blend-mode) ── */
 #flash {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
     width: 25vw; height: 25vw; border-radius: 50%;
-    background: #FFFFFF; 
-    box-shadow: 0 0 100px 50px #FFF, 0 0 200px 100px var(--gold), 0 0 400px 200px #FFF;
+    background: radial-gradient(circle, #FFFFFF 0%, rgba(212,175,55,0.8) 20%, transparent 60%);
     z-index: 6; opacity: 0;
-    mix-blend-mode: screen;
 }
 /* Horizontal Lens Flare */
 #flash::after {
     content: ''; position: absolute;
     top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 150vw; height: 8px;
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 0 40px 20px var(--gold), 0 0 80px 40px #FFF;
-    border-radius: 50%;
-    filter: blur(4px);
+    background: radial-gradient(ellipse, #FFFFFF 0%, rgba(212,175,55,0.8) 30%, transparent 70%);
 }
 
-/* ── INVITATION CARD (The Reveal) ── */
+/* ── INVITATION CARD (The Reveal, optimized without backdrop-filter) ── */
 #invitation-card {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%);
-    width: 90%; max-width: 420px; /* Safe bounds */
-    background: rgba(10, 15, 25, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    width: 90%; max-width: 420px;
+    background: rgba(8, 12, 22, 0.95); /* Solid elegant dark background for performance */
     border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 20px;
     padding: clamp(25px, 6vw, 35px) clamp(15px, 4vw, 25px);
     text-align: center;
     z-index: 10; opacity: 0;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.9);
 }
 
 .card-crown { display: flex; justify-content: center; margin-bottom: 25px; opacity: 0.9; }
@@ -163,16 +170,17 @@ body {
 .ph-h { margin-left: -15px; z-index: 1; }
 .ph-s { margin-right: -15px; z-index: 2; }
 
-/* Fixed Typography Colors - No more red/orange shadow bleed */
+/* English Typography for Names */
 .card-names { 
-    font-family: var(--f-title); 
-    font-size: clamp(2.2rem, 9vw, 3rem); /* Fluid scaling */
+    font-family: var(--f-en); 
+    font-weight: 700;
+    font-size: clamp(2.5rem, 11vw, 3.5rem); /* English fonts usually need slightly more room */
     color: var(--gold-light); 
     line-height: 1; 
     margin-bottom: 5px; 
     text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
-.amp { font-family: var(--f-en); font-size: clamp(1.2rem, 5vw, 1.5rem); color: var(--gold); font-style: italic; }
+.amp { font-family: var(--f-en); font-size: clamp(1.2rem, 5vw, 1.5rem); color: var(--gold); font-style: italic; margin: 0 5px; }
 .card-event { font-family: var(--f-body); font-weight: 400; font-size: clamp(1rem, 4vw, 1.2rem); letter-spacing: 2px; color: #FFFFFF; margin-bottom: 25px; }
 
 .card-divider { height: 1px; width: 50%; margin: 0 auto 25px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.6), transparent); }
@@ -181,7 +189,7 @@ body {
 .card-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; text-align: right; }
 .cd-row { 
     display: flex; align-items: center; gap: 12px; 
-    background: transparent; 
+    background: rgba(255,255,255,0.03); 
     padding: clamp(8px, 3vw, 12px) clamp(10px, 3vw, 15px); 
     border-radius: 12px; 
     border: 1px solid rgba(212,175,55,0.15); 
@@ -192,7 +200,7 @@ body {
 /* Upgraded Countdown */
 .card-countdown { display: flex; justify-content: center; gap: clamp(6px, 2vw, 10px); direction: ltr; margin-bottom: 30px; }
 .cbox { 
-    background: transparent; 
+    background: rgba(255,255,255,0.03); 
     border: 1px solid rgba(212,175,55,0.25); 
     border-radius: 12px; 
     width: clamp(55px, 14vw, 65px); height: clamp(55px, 14vw, 65px); 
@@ -210,11 +218,6 @@ body {
     border: 1px solid var(--gold);
     transition: all 0.3s ease;
 }
-.card-map-btn:hover { 
-    background: var(--gold); 
-    color: var(--bg-dark); 
-    box-shadow: 0 10px 25px rgba(212,175,55,0.3); 
-    transform: translateY(-2px); 
-}
+.card-map-btn:hover { background: var(--gold); color: var(--bg-dark); }
 
 .card-footer { margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; }
