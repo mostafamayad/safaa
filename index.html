@@ -16,8 +16,8 @@
 </head>
 <body>
 
-    <!-- Audio Player -->
-    <audio id="bg-music" loop preload="auto">
+    <!-- Audio Player — preload=none prevents blocking page load on weak devices -->
+    <audio id="bg-music" loop preload="none">
         <source src="assets/romantic.mp3" type="audio/mpeg">
     </audio>
     <button id="music-btn" class="music-btn" aria-label="Music">
@@ -64,7 +64,7 @@
             <div class="couple-profile" dir="ltr">
                 <!-- Safaa (Bride) -->
                 <div class="profile-col">
-                    <div class="c-photo"><img src="assets/safaa_real.jpg" alt="Safaa"></div>
+                    <div class="c-photo"><img src="assets/safaa_real.jpg" alt="Safaa" decoding="async"></div>
                     <div class="p-name">Safaa</div>
                 </div>
                 
@@ -75,7 +75,7 @@
 
                 <!-- Hamdy (Groom) -->
                 <div class="profile-col">
-                    <div class="c-photo"><img src="assets/hamdy_real.jpg" alt="Hamdy"></div>
+                    <div class="c-photo"><img src="assets/hamdy_real.jpg" alt="Hamdy" decoding="async"></div>
                     <div class="p-name">Hamdy</div>
                 </div>
             </div>
