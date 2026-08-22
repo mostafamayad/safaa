@@ -1,90 +1,169 @@
-﻿// BOKEH PARTICLES CANVAS (Joyful Golden Vibe)
-const canvas = document.getElementById('bokeh-canvas');
-const ctx = canvas.getContext('2d');
+/* ===== HEAVEN // 30.08 — Main Script ===== */
 
-let width, height, particles = [];
+gsap.registerPlugin(ScrollTrigger);
 
-function initCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-    particles = [];
-    const numParticles = window.innerWidth < 768 ? 40 : 80;
-    
-    for (let i = 0; i < numParticles; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            radius: Math.random() * 4 + 1,
-            vx: Math.random() * 0.5 - 0.25,
-            vy: Math.random() * -1 - 0.2,
-            alpha: Math.random() * 0.5 + 0.1
-        });
-    }
+// ── Stars Canvas (Scene 0) ──────────────────────────────────────────────
+(function initStars() {
+  const cv = document.getElementById('stars-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const resize = () => { cv.width = window.innerWidth; cv.height = window.innerHeight; };
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const stars = Array.from({ length: 120 }, () => ({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.4 + 0.3,
+    spd: Math.random() * 2 + 0.5,
+    ph: Math.random() * Math.PI * 2,
+  }));
+
+  let t = 0;
+  (function loop() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    t += 0.01;
+    stars.forEach(s => {
+      const a = 0.4 + 0.6 * Math.abs(Math.sin(s.ph + t * s.spd * 0.2));
+      ctx.beginPath();
+      ctx.arc(s.x * cv.width, s.y * cv.height, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,248,220,${a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
+
+// ── Parallax backgrounds ────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+  document.querySelectorAll('.parallax-bg').forEach(el => {
+    const speed = parseFloat(el.dataset.speed || 0.3);
+    el.style.transform = `translateY(${sy * speed}px)`;
+  });
+}, { passive: true });
+
+// ── Intersection Observer helper ────────────────────────────────────────
+function onVisible(el, cb, threshold = 0.25) {
+  if (!el) return;
+  new IntersectionObserver((entries, io) => {
+    entries.forEach(e => { if (e.isIntersecting) { cb(el); io.disconnect(); } });
+  }, { threshold }).observe(el);
 }
 
-function animateParticles() {
-    ctx.clearRect(0, 0, width, height);
-    
-    particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        
-        if (p.y < -10) {
-            p.y = height + 10;
-            p.x = Math.random() * width;
-        }
-        
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`; // Gold color
-        ctx.fill();
-    });
-    
-    requestAnimationFrame(animateParticles);
+// ── SCENE 1: Hamdy ──────────────────────────────────────────────────────
+const s1 = document.getElementById('s1');
+if (s1) {
+  onVisible(s1, () => {
+    s1.querySelector('.scene-text')?.classList.add('visible');
+    s1.querySelector('.char-wrap')?.classList.add('visible');
+  });
 }
 
-window.addEventListener('resize', initCanvas);
-initCanvas();
-animateParticles();
+// ── SCENE 2: Safaa ──────────────────────────────────────────────────────
+const s2 = document.getElementById('s2');
+if (s2) {
+  onVisible(s2, () => {
+    s2.querySelector('.scene-text')?.classList.add('visible');
+    s2.querySelector('.char-wrap')?.classList.add('visible');
+  });
+}
 
-// SCROLL ANIMATIONS (Fade up on scroll)
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-};
+// ── SCENE 3: The Meeting ─────────────────────────────────────────────────
+const s3 = document.getElementById('s3');
+const mH = document.getElementById('meet-h');
+const mS = document.getElementById('meet-s');
+const mC = document.getElementById('meet-center');
+if (s3) {
+  onVisible(s3, () => {
+    // chars walk toward center
+    setTimeout(() => { mH?.classList.add('come'); mS?.classList.add('come'); }, 200);
+    // burst in center
+    setTimeout(() => { mC?.classList.add('burst'); }, 1800);
+  }, 0.3);
+}
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
-    });
-}, observerOptions);
+// ── SCENE 4: Heaven Hall ─────────────────────────────────────────────────
+const s4 = document.getElementById('s4');
+if (s4) { onVisible(s4, () => s4.classList.add('visible')); }
 
-document.querySelectorAll('.fade-up').forEach(el => {
-    observer.observe(el);
+// ── SCENE 5: Invitation Card ─────────────────────────────────────────────
+const invCard = document.getElementById('inv-card');
+if (invCard) { onVisible(invCard, el => el.classList.add('visible'), 0.2); }
+
+// ── SCENE 6: Countdown ───────────────────────────────────────────────────
+const TARGET = new Date('2026-08-30T20:00:00+03:00').getTime();
+const cdEls = ['c-days', 'c-hours', 'c-mins', 'c-secs'].map(id => document.getElementById(id));
+const prevVals = ['', '', '', ''];
+
+function tick() {
+  const diff = Math.max(0, TARGET - Date.now());
+  const vals = [
+    Math.floor(diff / 86400000),
+    Math.floor((diff % 86400000) / 3600000),
+    Math.floor((diff % 3600000) / 60000),
+    Math.floor((diff % 60000) / 1000),
+  ].map(n => String(n).padStart(2, '0'));
+
+  vals.forEach((v, i) => {
+    if (!cdEls[i] || v === prevVals[i]) return;
+    prevVals[i] = v;
+    cdEls[i].textContent = v;
+    cdEls[i].classList.remove('flip');
+    void cdEls[i].offsetWidth;
+    cdEls[i].classList.add('flip');
+  });
+}
+tick();
+setInterval(tick, 1000);
+
+// ── MUSIC (Web Audio API Ambient) ────────────────────────────────────────
+const musicBtn = document.getElementById('music-btn');
+let actx = null, gainNode = null, oscs = [], playing = false;
+
+function startMusic() {
+  actx = new (window.AudioContext || window.webkitAudioContext)();
+  gainNode = actx.createGain();
+  gainNode.gain.setValueAtTime(0, actx.currentTime);
+  gainNode.gain.linearRampToValueAtTime(0.06, actx.currentTime + 3);
+  gainNode.connect(actx.destination);
+
+  // Warm ambient chord — D major base
+  [[73.4, 0.22], [110, 0.18], [146.8, 0.14], [220, 0.10], [293.7, 0.07]].forEach(([freq, vol]) => {
+    const osc = actx.createOscillator();
+    const g = actx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    g.gain.value = vol;
+    osc.connect(g);
+    g.connect(gainNode);
+    osc.start();
+    oscs.push(osc);
+  });
+  playing = true;
+}
+
+function stopMusic() {
+  if (!gainNode) return;
+  gainNode.gain.linearRampToValueAtTime(0, actx.currentTime + 1.5);
+  setTimeout(() => {
+    oscs.forEach(o => { try { o.stop(); } catch (e) {} });
+    oscs = [];
+    actx?.close();
+    actx = null; gainNode = null;
+    playing = false;
+  }, 1600);
+}
+
+musicBtn?.addEventListener('click', () => {
+  if (!playing) {
+    startMusic();
+    musicBtn.classList.remove('muted');
+  } else {
+    stopMusic();
+    musicBtn.classList.add('muted');
+  }
 });
 
-// COUNTDOWN LOGIC
-const targetDate = new Date("2026-08-30T20:00:00+03:00").getTime();
-
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) return;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("cd-days").innerText = String(days).padStart(2, '0');
-    document.getElementById("cd-hours").innerText = String(hours).padStart(2, '0');
-    document.getElementById("cd-mins").innerText = String(minutes).padStart(2, '0');
-    document.getElementById("cd-secs").innerText = String(seconds).padStart(2, '0');
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
+// ── Fix scroll to top on reload ──────────────────────────────────────────
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
