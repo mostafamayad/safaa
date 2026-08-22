@@ -96,10 +96,10 @@ function startJourney() {
     // Force native mobile browser to ignore finger swipes during the cinematic
     document.documentElement.style.pointerEvents = 'none';
     
-    // Flawless Auto-Scroll
+    // Flawless Auto-Scroll (Cinematic 12 seconds)
     // ScrollTrigger.maxScroll guarantees perfect bounds on iOS
     gsap.to(window, {
-        duration: 9,
+        duration: 12, // Increased from 9 to 12 to make it slower and more cinematic
         scrollTo: { y: ScrollTrigger.maxScroll(window), autoKill: false },
         ease: "power2.inOut",
         onComplete: () => {
