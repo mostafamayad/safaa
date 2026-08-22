@@ -116,50 +116,28 @@ function tick() {
 tick();
 setInterval(tick, 1000);
 
-// ── MUSIC (Web Audio API Ambient) ────────────────────────────────────────
+// ── MUSIC (Real Audio) ────────────────────────────────────────
 const musicBtn = document.getElementById('music-btn');
-let actx = null, gainNode = null, oscs = [], playing = false;
+const bgMusic = document.getElementById('bg-music');
+let playing = false;
 
-function startMusic() {
-  actx = new (window.AudioContext || window.webkitAudioContext)();
-  gainNode = actx.createGain();
-  gainNode.gain.setValueAtTime(0, actx.currentTime);
-  gainNode.gain.linearRampToValueAtTime(0.06, actx.currentTime + 3);
-  gainNode.connect(actx.destination);
-
-  // Warm ambient chord — D major base
-  [[73.4, 0.22], [110, 0.18], [146.8, 0.14], [220, 0.10], [293.7, 0.07]].forEach(([freq, vol]) => {
-    const osc = actx.createOscillator();
-    const g = actx.createGain();
-    osc.type = 'sine';
-    osc.frequency.value = freq;
-    g.gain.value = vol;
-    osc.connect(g);
-    g.connect(gainNode);
-    osc.start();
-    oscs.push(osc);
-  });
-  playing = true;
-}
-
-function stopMusic() {
-  if (!gainNode) return;
-  gainNode.gain.linearRampToValueAtTime(0, actx.currentTime + 1.5);
-  setTimeout(() => {
-    oscs.forEach(o => { try { o.stop(); } catch (e) {} });
-    oscs = [];
-    actx?.close();
-    actx = null; gainNode = null;
-    playing = false;
-  }, 1600);
+if (bgMusic) {
+  bgMusic.volume = 0.5; // Set a comfortable volume
 }
 
 musicBtn?.addEventListener('click', () => {
+  if (!bgMusic) return;
+  
   if (!playing) {
-    startMusic();
-    musicBtn.classList.remove('muted');
+    bgMusic.play().then(() => {
+      playing = true;
+      musicBtn.classList.remove('muted');
+    }).catch(err => {
+      console.log('Audio play failed:', err);
+    });
   } else {
-    stopMusic();
+    bgMusic.pause();
+    playing = false;
     musicBtn.classList.add('muted');
   }
 });
