@@ -125,9 +125,9 @@ if (startBtnOverlay) {
 }
 
 // ── INITIAL SETUP ──
-// Orbs starting position (Safaa left, Hamdy right)
-gsap.set("#orb-s", { left: "-10%" });
-gsap.set("#orb-h", { left: "110%" });
+// Orbs starting position (Hamdy from left, Safaa from right)
+gsap.set("#orb-h", { left: "-10%" });
+gsap.set("#orb-s", { left: "110%" });
 
 // ── THE MASTER TIMELINE ──
 const tl = gsap.timeline({
@@ -152,22 +152,22 @@ tl
   .to("#palace-bg", { opacity: 1, scale: 1, duration: 4 }, "-=2")
   .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4")
 
-  // 3. The Orbs (Lights) enter (Safaa from Left, Hamdy from Right)
-  .to("#orb-s", { left: "30%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut", onStart: () => { if(tl.scrollTrigger.direction === 1) playWhoosh(); } }, "orbs")
-  .to("#orb-h", { left: "70%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
+  // 3. The Orbs — Hamdy from Left, Safaa from Right
+  .to("#orb-h", { left: "30%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut", onStart: () => { if(tl.scrollTrigger.direction === 1) playWhoosh(); } }, "orbs")
+  .to("#orb-s", { left: "70%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
   
-  // 4. Collision & Optimized Cinematic Flash
-  .to("#orb-s", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
+  // 4. Collision & Cinematic Flash
   .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
+  .to("#orb-s", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
   .to("#flash", { opacity: 1, scale: 15, duration: 1.5, ease: "expo.out", onStart: () => { if(tl.scrollTrigger.direction === 1) playFlashSFX(); } }, "collide+=0.8")
   
-  // 5. Fade out orbs, bring in the card, and kill flash FAST
+  // 5. Fade out orbs, bring in the card (1 second faster)
   .to(".orb", { opacity: 0, duration: 0.1 }, "reveal")
-  .to("#flash", { opacity: 0, duration: 0.5 }, "reveal") // Fades out ultra fast
+  .to("#flash", { opacity: 0, duration: 0.5 }, "reveal")
   .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
-  .to("#invitation-card", { opacity: 1, y: "-50%", duration: 3 }, "reveal")
+  .to("#invitation-card", { opacity: 1, y: "-50%", duration: 2 }, "reveal") // Was 3, now 2
   
-  // 6. Empty buffer
+  // 6. Buffer
   .to({}, { duration: 1.5 });
 
 
