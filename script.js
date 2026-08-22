@@ -54,6 +54,17 @@ function playFlashSFX() {
     });
 }
 
+// ── SCROLL LOCK LOGIC ──
+function preventScroll(e) { e.preventDefault(); }
+function disableScroll() {
+    window.addEventListener('wheel', preventScroll, { passive: false });
+    window.addEventListener('touchmove', preventScroll, { passive: false });
+}
+function enableScroll() {
+    window.removeEventListener('wheel', preventScroll);
+    window.removeEventListener('touchmove', preventScroll);
+}
+
 function startJourney() {
     if (journeyStarted) return;
     journeyStarted = true;
@@ -64,6 +75,7 @@ function startJourney() {
     const startBtn = document.getElementById('start-journey-btn');
     if (startBtn) {
         startBtn.style.opacity = '0';
+        startBtn.style.pointerEvents = 'none'; // Instantly prevent double clicks
         setTimeout(() => startBtn.style.visibility = 'hidden', 800);
     }
     
@@ -78,12 +90,18 @@ function startJourney() {
         }
     }
     
+    // Lock screen manually so GSAP doesn't fight the user's fingers
+    disableScroll();
+    
     // Auto-Scroll the page
-    // autoKill: false ensures micro-swipes on mobile don't randomly cancel the cinematic video scroll
     gsap.to(window, {
         duration: 9,
         scrollTo: { y: "max", autoKill: false },
-        ease: "power2.inOut"
+        ease: "power2.inOut",
+        onComplete: () => {
+            // Once the journey reaches the absolute bottom, unlock the screen so they can scroll freely!
+            enableScroll();
+        }
     });
 }
 
@@ -105,8 +123,8 @@ mBtn.addEventListener('click', (e) => {
 // Trigger journey exclusively from the start button overlay
 const startBtnOverlay = document.getElementById('start-journey-btn');
 if (startBtnOverlay) {
+    // Standard click is enough for both mobile and desktop here since it's a giant overlay
     startBtnOverlay.addEventListener('click', startJourney, { once: true });
-    startBtnOverlay.addEventListener('touchstart', (e) => { e.preventDefault(); startJourney(); }, { once: true, passive: false });
 }
 
 // ── INITIAL SETUP ──
