@@ -94,9 +94,9 @@ function startJourney() {
     
     // Flawless Auto-Scroll — linear ease = every animation stage gets equal time
     gsap.to(window, {
-        duration: 13,
+        duration: 9,
         scrollTo: { y: ScrollTrigger.maxScroll(window), autoKill: false },
-        ease: "none", // Perfectly even — no rush at start, no lag at end
+        ease: "none",
         onComplete: () => {
             document.documentElement.style.pointerEvents = 'auto';
         }
@@ -135,7 +135,7 @@ const tl = gsap.timeline({
         trigger: "#cinema-container",
         pin: true,
         start: "top top",
-        end: "+=4500", // Smooth optimized scroll distance
+        end: "+=2800",
         scrub: 1
     }
 });
