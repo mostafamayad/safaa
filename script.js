@@ -1,20 +1,9 @@
-// ── FORCE TOP ON REFRESH (BULLETPROOF FOR iOS SAFARI) ──
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
-window.scrollTo(0, 0);
-
-// pagehide fires BEFORE the snapshot is taken on iOS — save position as 0
+// ── SCROLL RESTORATION ──
+// The critical reset is in <head> (inline script) — fires synchronously before browser restore.
+// pagehide fires before iOS takes its page snapshot, saves scroll position as 0.
 window.addEventListener('pagehide', () => {
-    window.scrollTo(0, 0);
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-});
-
-// pageshow fires on both fresh load AND back-forward cache restore
-window.addEventListener('pageshow', (e) => {
     window.scrollTo(0, 0);
-    // If page was served from bfcache (user hit back/refresh), force top again
-    if (e.persisted) { setTimeout(() => window.scrollTo(0, 0), 50); }
 });
 
 // ── REGISTER GSAP PLUGINS ──
