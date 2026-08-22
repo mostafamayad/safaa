@@ -2,113 +2,106 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#030614">
     <title>دعوة خطوبة | حمدي وصفاء</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
-    <!-- Background Music -->
+    <!-- Audio Player -->
     <audio id="bg-music" loop preload="auto">
         <source src="https://cdn.pixabay.com/audio/2022/11/17/audio_febc508520.mp3" type="audio/mpeg">
     </audio>
-
-    <!-- Music Toggle -->
-    <button id="music-toggle" class="music-btn" aria-label="تشغيل الموسيقى">
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="1.5" fill="none">
-            <path d="M9 18V5l12-2v13"></path>
-            <circle cx="6" cy="18" r="3"></circle>
-            <circle cx="18" cy="16" r="3"></circle>
-        </svg>
+    <button id="music-btn" class="music-btn" aria-label="Music">
+        <div class="mb-bars"><div class="mb-b"></div><div class="mb-b"></div><div class="mb-b"></div><div class="mb-b"></div></div>
     </button>
 
-    <!-- Background Image (Heaven Hall) -->
-    <div class="bg-image"></div>
-    <!-- Soft Warm Overlay (No Black) -->
-    <div class="bg-overlay"></div>
+    <div class="scroll-instruction">
+        <span>اسحب لتبدأ الرحلة</span>
+        <div class="scroll-line"></div>
+    </div>
 
-    <!-- Main Invitation Container -->
-    <main class="invitation-wrapper">
-        <div class="glass-card fade-up">
+    <!-- MAIN SCROLL CONTAINER -->
+    <div id="cinema-container">
+        <!-- Canvas for Stars -->
+        <canvas id="stars"></canvas>
+
+        <!-- Background Image (Palace) -->
+        <div id="palace-bg" style="background-image: url('assets/hall.jpg')"></div>
+        <div id="palace-overlay"></div>
+
+        <!-- Texts -->
+        <div id="text-1" class="cinema-text">في ليلة من أجمل الليالي...</div>
+        <div id="text-2" class="cinema-text">التقى النور بالنور...</div>
+
+        <!-- The Light Orbs (Representing Hamdy & Safaa) -->
+        <div id="orb-h" class="orb orb-gold"><div class="orb-name">حمدي</div></div>
+        <div id="orb-s" class="orb orb-silver"><div class="orb-name">صفاء</div></div>
+
+        <!-- The Light Flash -->
+        <div id="flash"></div>
+
+        <!-- The Final Invitation Card -->
+        <div id="invitation-card" class="premium-card">
             
-            <!-- Top Decoration -->
-            <div class="floral-deco">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                    <path d="M12 2C12 2 14 6 18 6C18 6 16 10 12 10C8 10 6 6 6 6C10 6 12 2 12 2Z"></path>
-                    <path d="M12 10V22"></path>
-                    <path d="M12 16C12 16 15 17 17 21C17 21 13 22 12 18"></path>
-                    <path d="M12 16C12 16 9 17 7 21C7 21 11 22 12 18"></path>
-                </svg>
-            </div>
-
-            <!-- Welcome Text -->
-            <p class="intro-text">بكل الحب والود، ندعوكم لمشاركتنا فرحتنا</p>
-
-            <!-- The Couple's Real Photos in Rings -->
-            <div class="couple-rings">
-                <div class="ring hamdy-ring">
-                    <img src="assets/hamdy_real.jpg" alt="العريس حمدي">
-                </div>
-                <div class="ring safaa-ring">
-                    <img src="assets/safaa_real.jpg" alt="العروسة صفاء">
-                </div>
-                <div class="ring-heart">🤍</div>
+            <div class="card-crown">✧ ✧ ✧</div>
+            
+            <!-- Real Photos -->
+            <div class="couple-photos">
+                <div class="c-photo ph-h"><img src="assets/hamdy_real.jpg" alt="حمدي"></div>
+                <div class="c-photo ph-s"><img src="assets/safaa_real.jpg" alt="صفاء"></div>
             </div>
 
             <!-- Names -->
-            <h1 class="couple-names">حمدي &amp; صفاء</h1>
-            <p class="event-title">حفل الخطوبة</p>
+            <h1 class="card-names">حمدي <span class="amp">&amp;</span> صفاء</h1>
+            <p class="card-event">حفل الخطوبة</p>
 
-            <div class="divider"></div>
+            <div class="card-divider"></div>
 
-            <!-- Event Details -->
-            <div class="details-grid">
-                <div class="detail-item">
-                    <span class="d-icon">📅</span>
-                    <span class="d-title">الموعد</span>
-                    <span class="d-info">الأحد، ٣٠ أغسطس ٢٠٢٦<br>الساعة ٨:٠٠ مساءً</span>
+            <!-- Details -->
+            <div class="card-details">
+                <div class="cd-row">
+                    <span class="cd-icon">📅</span>
+                    <span class="cd-text">الأحد، ٣٠ أغسطس ٢٠٢٦</span>
                 </div>
-                <div class="detail-item">
-                    <span class="d-icon">📍</span>
-                    <span class="d-title">المكان</span>
-                    <span class="d-info">HEAVEN HALL<br>محلة روح - طنطا</span>
+                <div class="cd-row">
+                    <span class="cd-icon">🕗</span>
+                    <span class="cd-text">الساعة ٨:٠٠ مساءً</span>
+                </div>
+                <div class="cd-row">
+                    <span class="cd-icon">📍</span>
+                    <span class="cd-text">قاعة HEAVEN HALL - محلة روح</span>
                 </div>
             </div>
 
             <!-- Countdown -->
-            <div class="countdown-container">
-                <p class="c-title">نعد الأيام للقائكم</p>
-                <div class="countdown-boxes">
-                    <div class="c-box">
-                        <span id="c-days">00</span>
-                        <small>يوم</small>
-                    </div>
-                    <div class="c-box">
-                        <span id="c-hours">00</span>
-                        <small>ساعة</small>
-                    </div>
-                    <div class="c-box">
-                        <span id="c-mins">00</span>
-                        <small>دقيقة</small>
-                    </div>
-                    <div class="c-box">
-                        <span id="c-secs">00</span>
-                        <small>ثانية</small>
-                    </div>
-                </div>
+            <div class="card-countdown">
+                <div class="cbox"><div id="c-days" class="cnum">00</div><div class="clbl">يوم</div></div>
+                <div class="cbox"><div id="c-hours" class="cnum">00</div><div class="clbl">ساعة</div></div>
+                <div class="cbox"><div id="c-mins" class="cnum">00</div><div class="clbl">دقيقة</div></div>
+                <div class="cbox"><div id="c-secs" class="cnum">00</div><div class="clbl">ثانية</div></div>
             </div>
 
-            <!-- Elegant Map Button -->
-            <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" class="btn-luxury">
-                الوصول للقاعة بالخريطة
+            <!-- Map Button -->
+            <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" class="card-map-btn">
+                افتح الخريطة للوصول
             </a>
 
+            <div class="card-footer">في انتظاركم لتكتمل فرحتنا 🤍</div>
         </div>
-    </main>
 
-    <script src="script.js?v=3"></script>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Lenis for ultra-smooth scrolling -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <!-- GSAP for timeline animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>

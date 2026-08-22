@@ -1,43 +1,96 @@
-﻿// ── AUDIO LOGIC ──
-const musicBtn = document.getElementById('music-toggle');
-const bgMusic = document.getElementById('bg-music');
-let playing = false;
+﻿// ── INIT SMOOTH SCROLLING ──
+const lenis = new Lenis({ duration: 1.5, smooth: true });
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
 
-if (bgMusic) {
-    bgMusic.volume = 0.5;
+gsap.registerPlugin(ScrollTrigger);
+
+// ── INIT STARS CANVAS ──
+const cv = document.getElementById('stars');
+const ctx = cv.getContext('2d');
+let stars = [];
+function resize() {
+    cv.width = window.innerWidth; cv.height = window.innerHeight;
+    stars = Array.from({length: 150}, () => ({
+        x: Math.random() * cv.width, y: Math.random() * cv.height,
+        r: Math.random() * 1.5, p: Math.random() * Math.PI * 2
+    }));
 }
+window.addEventListener('resize', resize); resize();
+function drawStars() {
+    ctx.clearRect(0,0,cv.width,cv.height);
+    stars.forEach(s => {
+        s.p += 0.02;
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${0.3 + Math.sin(s.p)*0.7})`; ctx.fill();
+    });
+    requestAnimationFrame(drawStars);
+}
+drawStars();
 
-musicBtn?.addEventListener('click', () => {
-    if (!bgMusic) return;
-    
-    if (!playing) {
-        bgMusic.play().then(() => {
-            playing = true;
-            musicBtn.classList.add('playing');
-        }).catch(err => console.log('Audio play failed:', err));
-    } else {
-        bgMusic.pause();
-        playing = false;
-        musicBtn.classList.remove('playing');
+// ── AUDIO ──
+const mBtn = document.getElementById('music-btn');
+const bgm = document.getElementById('bg-music');
+let playing = false;
+if(bgm) bgm.volume = 0.5;
+mBtn.addEventListener('click', () => {
+    if(!playing) { bgm.play(); playing = true; mBtn.classList.add('playing'); }
+    else { bgm.pause(); playing = false; mBtn.classList.remove('playing'); }
+});
+
+// ── INITIAL SETUP ──
+gsap.set("#orb-h", { left: "-10%" });
+gsap.set("#orb-s", { left: "110%" });
+
+// ── THE MASTER TIMELINE ──
+const tl = gsap.timeline({
+    scrollTrigger: {
+        trigger: "#cinema-container",
+        pin: true,
+        start: "top top",
+        end: "+=6000", // 6000px of scrolling for the movie
+        scrub: 1
     }
 });
 
-// ── COUNTDOWN LOGIC ──
-const TARGET = new Date('2026-08-30T20:00:00+03:00').getTime();
-const els = {
-    d: document.getElementById('c-days'),
-    h: document.getElementById('c-hours'),
-    m: document.getElementById('c-mins'),
-    s: document.getElementById('c-secs')
-};
+tl
+  // 1. Text 1 fades in and out
+  .to("#text-1", { opacity: 1, duration: 2 })
+  .to("#text-1", { opacity: 0, duration: 2 }, "+=1")
+  
+  // 2. Text 2 fades in and out
+  .to("#text-2", { opacity: 1, duration: 2 })
+  .to("#text-2", { opacity: 0, duration: 2 }, "+=1")
 
+  // 3. Palace background rises from the dark
+  .to("#palace-bg", { opacity: 1, scale: 1, duration: 4 }, "-=2")
+  .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4") // darken it
+
+  // 4. The Orbs (Lights) enter
+  .to("#orb-h", { left: "45%", opacity: 1, duration: 4 }, "orbs")
+  .to("#orb-s", { left: "55%", opacity: 1, duration: 4 }, "orbs")
+  
+  // 5. Collision & Flash
+  .to("#orb-h", { left: "50%", duration: 1 }, "collide")
+  .to("#orb-s", { left: "50%", duration: 1 }, "collide")
+  .to("#flash", { opacity: 1, scale: 20, duration: 2 }, "collide")
+  
+  // 6. Fade out orbs, bring in the card
+  .to(".orb", { opacity: 0, duration: 0.1 })
+  .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
+  .to("#invitation-card", { opacity: 1, y: "-50%", duration: 3 }, "reveal")
+  
+  // 7. Flash fades away, revealing the final scene perfectly
+  .to("#flash", { opacity: 0, duration: 3 }, "reveal+=1");
+
+
+// ── COUNTDOWN ──
+const TARGET = new Date('2026-08-30T20:00:00+03:00').getTime();
 function tick() {
     const diff = Math.max(0, TARGET - Date.now());
-    if (els.d) els.d.textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
-    if (els.h) els.h.textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-    if (els.m) els.m.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-    if (els.s) els.s.textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+    document.getElementById('c-days').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
+    document.getElementById('c-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+    document.getElementById('c-mins').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+    document.getElementById('c-secs').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
 }
-
-tick();
-setInterval(tick, 1000);
+tick(); setInterval(tick, 1000);
