@@ -2,38 +2,204 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>حمدي & صفاء — ٣٠ أغسطس ٢٠٢٦</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070504">
+<title>حمدي &amp; صفاء — ٣٠ أغسطس ٢٠٢٦</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="cursor"></div><div id="cr"></div>
-<canvas id="ac"></canvas>
-<div id="ld"><div class="lm">H &amp; S</div><div class="lbw"><div class="lb"></div></div><div class="lt">Hamdy &amp; Safaa &nbsp;&middot;&nbsp; 2026</div></div>
-<div id="es">
-  <div class="eg"></div><canvas id="dc"></canvas>
-  <div class="ew" id="env" role="button" tabindex="0" aria-label="اضغط لفتح الدعوة">
-    <div class="eb"><div class="fl"></div><div class="fr"></div><div class="fb"></div>
-      <div class="ec"><div class="eci">حمدي &amp; صفاء<br><span style="font-size:.8em;opacity:.65">٣٠ أغسطس ٢٠٢٦</span></div></div>
-      <div class="ft"></div>
-      <div class="sl">H&amp;S</div>
-      <div class="em"><div class="emt">H &amp; S</div><div class="emn">Hamdy &amp; Safaa</div></div>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="ring"></div>
+
+<!-- LOADING -->
+<div id="ld" aria-label="جاري التحميل" role="status">
+  <div class="lm">H &amp; S</div>
+  <div class="lbw"></div>
+  <div class="lsb">Hamdy &amp; Safaa &nbsp;&middot;&nbsp; 2026</div>
+</div>
+
+<!-- ENVELOPE SCENE -->
+<div id="env-scene">
+  <div id="env-floor"></div>
+  <canvas id="dust" aria-hidden="true"></canvas>
+
+  <div class="ew" id="env-el" role="button" tabindex="0" aria-label="اضغط لفتح الدعوة">
+    <div class="eb">
+      <div class="efl"></div>
+      <div class="efr"></div>
+      <div class="efb"></div>
+      <div class="ecard">
+        <div class="ecard-txt">
+          حمدي &amp; صفاء<br>
+          <span style="font-size:.8em;opacity:.6">٣٠ أغسطس ٢٠٢٦</span>
+        </div>
+      </div>
+      <div class="eft"></div>
+      <div class="seal">
+        <div class="seal-c">
+          <span class="seal-txt">H&amp;S</span>
+        </div>
+      </div>
+      <div class="emono">
+        <div class="emono-h">H &amp; S</div>
+        <div class="emono-n">Hamdy &amp; Safaa</div>
+      </div>
     </div>
   </div>
-  <div class="ep" id="epr"><div class="epl"></div><div class="ept">افتح الدعوة</div><div class="epl"></div></div>
+
+  <div class="ep" id="env-prompt">
+    <div class="ep-ln"></div>
+    <div class="ep-ar">افتح الدعوة</div>
+    <div class="ep-ln"></div>
+  </div>
 </div>
+
+<!-- MAIN EXPERIENCE -->
 <div id="main">
-  <section class="sr" id="s1"><div class="rl" id="rl"></div><h1 class="nm" id="nm">حمدي<span class="nma">&amp;</span>صفاء</h1><p class="rd" id="rd">30 &nbsp;&bull;&nbsp; 08 &nbsp;&bull;&nbsp; 2026</p><p class="rc" id="rc">"وفي يومٍ جميل، نحتفل ببداية حكاية جديدة..."</p><div class="shi"><span>اكتشف</span><div class="sha"></div></div></section>
-  <section class="ss" id="s2"><div class="so"></div><p class="st" id="st">كل حكاية تبدأ بلحظة...<br><em>لحظة تغيّر كل شيء.</em><br><br>وهذه دعوتنا لكم<br>لتكونوا جزءاً من بدايتنا.</p><div class="pr"><div class="pf" id="p1"><div class="pfi"><div class="pfo">&#x2726;</div><div class="pfl">Hamdy & Safaa</div></div></div><div class="pf" id="p2"><div class="pfi"><div class="pfo">&#x2726;</div><div class="pfl">30 &middot; 08 &middot; 2026</div></div></div></div></section>
-  <section class="sc2" id="s3"><div class="bc bc1"></div><div class="bc bc2"></div><div class="bc bc3"></div><h2 class="cdh" id="cdh">العد التنازلي للفرحة</h2><div class="cl"><div class="ckt" id="ckt"></div><div class="ci"><div class="ce">HAMDY &amp; SAFAA</div><div class="cdt">30 AUGUST 2026</div><div class="cdn"><div class="cdu"><div class="cdn-n" id="dd">--</div><div class="cdn-l">يوم</div></div><div class="cdv">:</div><div class="cdu"><div class="cdn-n" id="dh">--</div><div class="cdn-l">ساعة</div></div><div class="cdv">:</div><div class="cdu"><div class="cdn-n" id="dm">--</div><div class="cdn-l">دقيقة</div></div><div class="cdv">:</div><div class="cdu"><div class="cdn-n" id="ds">--</div><div class="cdn-l">ثانية</div></div></div></div></div><p class="cdf" id="cdf">"كل لحظة تقربنا من يوم لا يُنسى"</p></section>
-  <section class="sv" id="s4"><div class="va"></div><p class="vp" id="vp">موعد الاحتفال</p><h2 class="vn" id="vn">HEAVEN HALL</h2><p class="vdt" id="vdt">30 August 2026</p><div class="vd" id="vd"><div class="vdl"></div><div class="vdi"></div><div class="vdl"></div></div><p class="vsb" id="vsb">"مكانٌ يليق بأجمل اللحظات"</p></section>
-  <section class="sl2" id="s5"><div class="lg"></div><h2 class="lt2" id="lt2">موعدنا في Heaven Hall</h2><p class="la" id="la">محلة روح &nbsp;&mdash;&nbsp; طنطا &nbsp;&mdash;&nbsp; الغربية</p><a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" rel="noopener" class="mb" id="mbt">&#x2726; افتح الموقع</a></section>
-  <section class="sc3" id="s6"><div class="pc" id="pc"><div class="co"></div><p class="ci2">بكل الحب والفرح،<br>ندعوكم لمشاركتنا فرحتنا</p><div class="cn">حمدي<span class="cns">&amp;</span>صفاء</div><div class="cdiv"></div><div class="cdtl">٣٠ أغسطس ٢٠٢٦</div><div class="cvn">Heaven Hall</div><div class="cbot"><div class="cbl"></div><div class="cbs">&#x2726;</div><div class="cbl"></div></div></div></section>
-  <section class="sst" id="s7"><canvas id="scv"></canvas><div class="stc"><div class="shs" id="sh">H &amp; S</div><div class="snm" id="sn">حمدي &amp; صفاء</div><div class="sdt" id="sd">30 &nbsp;&bull;&nbsp; 08 &nbsp;&bull;&nbsp; 2026</div><div class="scp" id="sc4">"والحكاية لسه بتبدأ..."</div><a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" rel="noopener" class="fb2" id="fb">&#x2726; شوف المكان</a></div></section>
-</div>
-<button id="mb2" class="p" aria-label="تشغيل الموسيقى"><div class="mbr"><div class="mbb"></div><div class="mbb"></div><div class="mbb"></div><div class="mbb"></div><div class="mbb"></div></div></button>
+
+  <!-- 1. NAMES -->
+  <section class="s-names" id="s-names">
+    <div class="names-vline" id="names-vline"></div>
+    <div class="names-wrap">
+      <div class="name-ar" id="name-h">حمدي</div>
+      <div class="names-amp" id="names-amp">&amp;</div>
+      <div class="name-ar" id="name-s">صفاء</div>
+    </div>
+    <p class="names-dt" id="names-dt">30 &nbsp;&bull;&nbsp; 08 &nbsp;&bull;&nbsp; 2026</p>
+    <p class="names-cp" id="names-cp">"وفي يومٍ جميل، نحتفل ببداية حكاية جديدة..."</p>
+    <div class="s-cue" aria-hidden="true">
+      <span class="s-cue-t">اكتشف</span>
+      <div class="s-cue-a"></div>
+    </div>
+  </section>
+
+  <!-- 2. STORY -->
+  <section class="s-story" id="s-story">
+    <div class="st-orn" aria-hidden="true"></div>
+    <p class="st-num" id="st-num">٠١ &nbsp;—&nbsp; الحكاية</p>
+    <p class="st-p" id="st-p">
+      كل حكاية تبدأ بلحظة...<br>
+      <em>لحظة تغيّر كل شيء.</em><br><br>
+      وهذه دعوتنا لكم<br>
+      لتكونوا جزءاً من بدايتنا.
+    </p>
+  </section>
+
+  <!-- 3. COUNTDOWN (Split-Flap) -->
+  <section class="s-count" id="s-count">
+    <h2 class="cnt-ttl" id="cnt-ttl">العد التنازلي للفرحة</h2>
+    <div class="flap-grid" aria-label="العد التنازلي">
+      <div class="flap-unit">
+        <div class="flap-card" id="fc-d"><div class="flap-n">--</div></div>
+        <div class="flap-lbl">يوم</div>
+      </div>
+      <div class="flap-div" aria-hidden="true">:</div>
+      <div class="flap-unit">
+        <div class="flap-card" id="fc-h"><div class="flap-n">--</div></div>
+        <div class="flap-lbl">ساعة</div>
+      </div>
+      <div class="flap-div" aria-hidden="true">:</div>
+      <div class="flap-unit">
+        <div class="flap-card" id="fc-m"><div class="flap-n">--</div></div>
+        <div class="flap-lbl">دقيقة</div>
+      </div>
+      <div class="flap-div" aria-hidden="true">:</div>
+      <div class="flap-unit">
+        <div class="flap-card" id="fc-s"><div class="flap-n">--</div></div>
+        <div class="flap-lbl">ثانية</div>
+      </div>
+    </div>
+    <p class="cnt-sub" id="cnt-sub">"كل لحظة تقربنا من يوم لا يُنسى"</p>
+  </section>
+
+  <!-- 4. VENUE -->
+  <section class="s-venue" id="s-venue">
+    <div class="v-arch" aria-hidden="true"></div>
+    <p class="v-pre" id="v-pre">موعد الاحتفال</p>
+    <h2 class="v-name" id="v-name">HEAVEN HALL</h2>
+    <p class="v-dt" id="v-dt">30 August 2026</p>
+    <div class="v-deco" id="v-deco" aria-hidden="true">
+      <div class="v-dl"></div>
+      <div class="v-dia"></div>
+      <div class="v-dl"></div>
+    </div>
+    <p class="v-qt" id="v-qt">"مكانٌ يليق بأجمل اللحظات"</p>
+  </section>
+
+  <!-- 5. LOCATION -->
+  <section class="s-loc" id="s-loc">
+    <div class="loc-grid" aria-hidden="true"></div>
+    <h2 class="loc-h" id="loc-h">موعدنا في Heaven Hall</h2>
+    <p class="loc-a" id="loc-a">محلة روح &nbsp;&mdash;&nbsp; طنطا &nbsp;&mdash;&nbsp; الغربية</p>
+    <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic"
+       target="_blank" rel="noopener"
+       class="loc-btn" id="loc-btn">
+      <span>
+        <span aria-hidden="true">✦</span>
+        افتح الموقع
+      </span>
+    </a>
+  </section>
+
+  <!-- 6. INVITATION CARD -->
+  <section class="s-card" id="s-card">
+    <div class="pcard" id="pcard">
+      <div class="pc-gem" aria-hidden="true"></div>
+      <p class="pc-inv">
+        بكل الحب والفرح،<br>
+        ندعوكم لمشاركتنا فرحتنا
+      </p>
+      <div class="pc-nm">
+        حمدي
+        <span class="pc-amp">&amp;</span>
+        صفاء
+      </div>
+      <div class="pc-sep" aria-hidden="true"></div>
+      <div class="pc-dt">٣٠ أغسطس ٢٠٢٦</div>
+      <div class="pc-vn">Heaven Hall</div>
+      <div class="pc-ft" aria-hidden="true">
+        <div class="pc-fl"></div>
+        <div class="pc-fs">✦</div>
+        <div class="pc-fl"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. STARS FINALE -->
+  <section class="s-stars" id="s-stars">
+    <canvas id="star-cv" aria-hidden="true"></canvas>
+    <div class="stc">
+      <div class="st-hs" id="st-hs">H &amp; S</div>
+      <div class="st-nm" id="st-nm">حمدي &amp; صفاء</div>
+      <div class="st-dt" id="st-dt">30 &nbsp;&bull;&nbsp; 08 &nbsp;&bull;&nbsp; 2026</div>
+      <div class="st-cp" id="st-cp">"والحكاية لسه بتبدأ..."</div>
+      <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic"
+         target="_blank" rel="noopener"
+         class="st-btn" id="st-btn">
+        <span aria-hidden="true">✦</span>
+        شوف المكان
+      </a>
+    </div>
+  </section>
+
+</div><!-- /main -->
+
+<!-- MUSIC -->
+<button id="mus" class="mt" aria-label="تشغيل الموسيقى">
+  <div class="mb" aria-hidden="true">
+    <div class="mb-b"></div>
+    <div class="mb-b"></div>
+    <div class="mb-b"></div>
+    <div class="mb-b"></div>
+    <div class="mb-b"></div>
+  </div>
+</button>
+
 <script src="script.js"></script>
 </body>
 </html>
