@@ -169,7 +169,7 @@ tl
   .to(".orb", { opacity: 0, duration: 0.1 }, "reveal")
   .to("#flash", { opacity: 0, duration: 0.5 }, "reveal")
   .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
-  .to("#invitation-card", { opacity: 1, y: "-50%", duration: 2 }, "reveal") // Was 3, now 2
+  .to("#invitation-card", { opacity: 1, y: "-50%", duration: 1 }, "reveal") // Fast reveal
   
   // 6. Buffer
   .to({}, { duration: 1.5 });
