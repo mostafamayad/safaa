@@ -54,16 +54,7 @@ function playFlashSFX() {
     });
 }
 
-// ── SCROLL LOCK LOGIC ──
-function preventScroll(e) { e.preventDefault(); }
-function disableScroll() {
-    window.addEventListener('wheel', preventScroll, { passive: false });
-    window.addEventListener('touchmove', preventScroll, { passive: false });
-}
-function enableScroll() {
-    window.removeEventListener('wheel', preventScroll);
-    window.removeEventListener('touchmove', preventScroll);
-}
+// Removed preventScroll functions
 
 function startJourney() {
     if (journeyStarted) return;
@@ -71,7 +62,7 @@ function startJourney() {
     
     initSFX(); // Unlock SFX context
     
-    // Hide the massive start button
+    // Hide the invisible start button overlay
     const startBtn = document.getElementById('start-journey-btn');
     if (startBtn) {
         startBtn.style.opacity = '0';
@@ -90,17 +81,18 @@ function startJourney() {
         }
     }
     
-    // Lock screen manually so GSAP doesn't fight the user's fingers
-    disableScroll();
+    // Force native mobile browser to ignore finger swipes during the cinematic
+    document.documentElement.style.pointerEvents = 'none';
     
-    // Auto-Scroll the page
+    // Flawless Auto-Scroll
+    // ScrollTrigger.maxScroll guarantees perfect bounds on iOS
     gsap.to(window, {
         duration: 9,
-        scrollTo: { y: "max", autoKill: false },
+        scrollTo: { y: ScrollTrigger.maxScroll(window), autoKill: false },
         ease: "power2.inOut",
         onComplete: () => {
-            // Once the journey reaches the absolute bottom, unlock the screen so they can scroll freely!
-            enableScroll();
+            // Unlock everything so they can scroll freely!
+            document.documentElement.style.pointerEvents = 'auto';
         }
     });
 }
@@ -123,13 +115,13 @@ mBtn.addEventListener('click', (e) => {
 // Trigger journey exclusively from the start button overlay
 const startBtnOverlay = document.getElementById('start-journey-btn');
 if (startBtnOverlay) {
-    // Standard click is enough for both mobile and desktop here since it's a giant overlay
     startBtnOverlay.addEventListener('click', startJourney, { once: true });
 }
 
 // ── INITIAL SETUP ──
-gsap.set("#orb-h", { left: "-10%" });
-gsap.set("#orb-s", { left: "110%" });
+// Orbs starting position (Safaa left, Hamdy right)
+gsap.set("#orb-s", { left: "-10%" });
+gsap.set("#orb-h", { left: "110%" });
 
 // ── THE MASTER TIMELINE ──
 const tl = gsap.timeline({
@@ -143,37 +135,33 @@ const tl = gsap.timeline({
 });
 
 tl
-  // 1. Instantly fade out the scroll instruction
-  .to("#scroll-hint", { opacity: 0, duration: 0.5 })
-  
-  // 2. Text 1 fades in and out (with Chime)
+  // 1. Texts fade in/out
   .to("#text-1", { opacity: 1, duration: 2, onStart: () => { if(tl.scrollTrigger.direction === 1) playTextChime(); } }, "-=0.5")
   .to("#text-1", { opacity: 0, duration: 2 }, "+=1")
   
-  // 3. Text 2 fades in and out (with Chime)
   .to("#text-2", { opacity: 1, duration: 2, onStart: () => { if(tl.scrollTrigger.direction === 1) playTextChime(); } })
   .to("#text-2", { opacity: 0, duration: 2 }, "+=1")
 
-  // 4. Palace background rises
+  // 2. Palace background rises
   .to("#palace-bg", { opacity: 1, scale: 1, duration: 4 }, "-=2")
   .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4")
 
-  // 5. The Orbs (Lights) enter (with Whoosh)
-  .to("#orb-h", { left: "30%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut", onStart: () => { if(tl.scrollTrigger.direction === 1) playWhoosh(); } }, "orbs")
-  .to("#orb-s", { left: "70%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
+  // 3. The Orbs (Lights) enter (Safaa from Left, Hamdy from Right)
+  .to("#orb-s", { left: "30%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut", onStart: () => { if(tl.scrollTrigger.direction === 1) playWhoosh(); } }, "orbs")
+  .to("#orb-h", { left: "70%", scale: 1.5, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
   
-  // 6. Collision & Optimized Cinematic Flash (with Flash SFX)
-  .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
+  // 4. Collision & Optimized Cinematic Flash
   .to("#orb-s", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
+  .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
   .to("#flash", { opacity: 1, scale: 15, duration: 1.5, ease: "expo.out", onStart: () => { if(tl.scrollTrigger.direction === 1) playFlashSFX(); } }, "collide+=0.8")
   
-  // 7. Fade out orbs, bring in the card, and kill flash FAST
+  // 5. Fade out orbs, bring in the card, and kill flash FAST
   .to(".orb", { opacity: 0, duration: 0.1 }, "reveal")
-  .to("#flash", { opacity: 0, duration: 0.5 }, "reveal") // Fades out ultra fast so it doesn't get stuck
+  .to("#flash", { opacity: 0, duration: 0.5 }, "reveal") // Fades out ultra fast
   .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
   .to("#invitation-card", { opacity: 1, y: "-50%", duration: 3 }, "reveal")
   
-  // 8. Empty buffer at the end guarantees the animation finishes exactly before you hit the bottom scroll limit
+  // 6. Empty buffer
   .to({}, { duration: 1.5 });
 
 
