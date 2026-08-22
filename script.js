@@ -95,17 +95,17 @@ tl
   .to("#palace-bg", { opacity: 1, scale: 1, duration: 4 }, "-=2")
   .to("#palace-overlay", { opacity: 1, duration: 4 }, "-=4")
 
-  // 5. The Orbs (Lights) enter
-  .to("#orb-h", { left: "45%", opacity: 1, duration: 4 }, "orbs")
-  .to("#orb-s", { left: "55%", opacity: 1, duration: 4 }, "orbs")
+  // 5. The Orbs (Lights) enter magnetically
+  .to("#orb-h", { left: "42%", scale: 1.8, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
+  .to("#orb-s", { left: "58%", scale: 1.8, opacity: 1, duration: 4, ease: "power1.inOut" }, "orbs")
   
-  // 6. Collision & Flash
-  .to("#orb-h", { left: "50%", duration: 1 }, "collide")
-  .to("#orb-s", { left: "50%", duration: 1 }, "collide")
-  .to("#flash", { opacity: 1, scale: 20, duration: 2 }, "collide")
+  // 6. Collision & Cinematic Flash
+  .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
+  .to("#orb-s", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
+  .to("#flash", { opacity: 1, scale: 20, duration: 1.5, ease: "expo.out" }, "collide+=0.8")
   
   // 7. Fade out orbs, bring in the card
-  .to(".orb", { opacity: 0, duration: 0.1 })
+  .to(".orb", { opacity: 0, duration: 0.1 }, "reveal")
   .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
   .to("#invitation-card", { opacity: 1, y: "-50%", duration: 3 }, "reveal")
   
