@@ -1,14 +1,21 @@
-// ── FORCE TOP ON REFRESH (BULLETPROOF) ──
+// ── FORCE TOP ON REFRESH (BULLETPROOF FOR iOS SAFARI) ──
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
 
-// Force top before the page unloads so the browser saves "0" as the state
-window.addEventListener('beforeunload', () => window.scrollTo(0, 0));
+// pagehide fires BEFORE the snapshot is taken on iOS — save position as 0
+window.addEventListener('pagehide', () => {
+    window.scrollTo(0, 0);
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+});
 
-// Force top slightly after load to beat delayed native restores on mobile
-window.addEventListener('load', () => setTimeout(() => window.scrollTo(0, 0), 10));
+// pageshow fires on both fresh load AND back-forward cache restore
+window.addEventListener('pageshow', (e) => {
+    window.scrollTo(0, 0);
+    // If page was served from bfcache (user hit back/refresh), force top again
+    if (e.persisted) { setTimeout(() => window.scrollTo(0, 0), 50); }
+});
 
 // ── REGISTER GSAP PLUGINS ──
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -96,14 +103,12 @@ function startJourney() {
     // Force native mobile browser to ignore finger swipes during the cinematic
     document.documentElement.style.pointerEvents = 'none';
     
-    // Flawless Auto-Scroll (Cinematic 12 seconds)
-    // ScrollTrigger.maxScroll guarantees perfect bounds on iOS
+    // Flawless Auto-Scroll — linear ease = every animation stage gets equal time
     gsap.to(window, {
-        duration: 12, // Increased from 9 to 12 to make it slower and more cinematic
+        duration: 13,
         scrollTo: { y: ScrollTrigger.maxScroll(window), autoKill: false },
-        ease: "power2.inOut",
+        ease: "none", // Perfectly even — no rush at start, no lag at end
         onComplete: () => {
-            // Unlock everything so they can scroll freely!
             document.documentElement.style.pointerEvents = 'auto';
         }
     });
