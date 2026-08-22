@@ -160,16 +160,16 @@ tl
   .to("#orb-h", { left: "42%", duration: 2, ease: "sine.inOut" }, "+=0")
   .to("#orb-s", { left: "58%", duration: 2, ease: "sine.inOut" }, "<")
   
-  // 4. Collision & Cinematic Flash
-  .to("#orb-h", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
-  .to("#orb-s", { left: "50%", scale: 0.1, duration: 1, ease: "back.in(2)" }, "collide")
-  .to("#flash", { opacity: 1, scale: 15, duration: 1.5, ease: "expo.out", onStart: () => { if(tl.scrollTrigger.direction === 1) playFlashSFX(); } }, "collide+=0.8")
+  // 4. Collision & Cinematic Flash (faster)
+  .to("#orb-h", { left: "50%", scale: 0.1, duration: 0.6, ease: "back.in(2)" }, "collide")
+  .to("#orb-s", { left: "50%", scale: 0.1, duration: 0.6, ease: "back.in(2)" }, "collide")
+  .to("#flash", { opacity: 1, scale: 15, duration: 0.8, ease: "expo.out", onStart: () => { if(tl.scrollTrigger.direction === 1) playFlashSFX(); } }, "collide+=0.4")
   
-  // 5. Fade out orbs, bring in the card (1 second faster)
+  // 5. Fade out orbs, bring in the card instantly
   .to(".orb", { opacity: 0, duration: 0.1 }, "reveal")
-  .to("#flash", { opacity: 0, duration: 0.5 }, "reveal")
-  .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 1 }, "reveal")
-  .to("#invitation-card", { opacity: 1, y: "-50%", duration: 1 }, "reveal") // Fast reveal
+  .to("#flash", { opacity: 0, duration: 0.4 }, "reveal")
+  .to("#palace-overlay", { background: "linear-gradient(to bottom, rgba(3,6,20,0.6), rgba(3,6,20,0.2), rgba(3,6,20,0.8))", duration: 0.5 }, "reveal")
+  .to("#invitation-card", { opacity: 1, y: "-50%", duration: 0.8 }, "reveal")
   
   // 6. Buffer
   .to({}, { duration: 1.5 });
