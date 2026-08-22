@@ -1,75 +1,152 @@
 ﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>حمدي & صفاء — دعوتكم</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HEAVEN // 30.08</title>
+    
+    <!-- Editorial Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400&family=Noto+Kufi+Arabic:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<button id="audio-btn" aria-label="Play Music">♫</button>
-
-<!-- Section 1: Intro (Envelope) -->
-<section class="sec" id="sec-intro">
-  <img src="assets/bg_envelope.jpg" alt="" class="bg-img">
-  <div class="overlay"></div>
-  <div class="content">
-    <h1 class="intro-names fade-up">حمدي <span>&amp;</span> صفاء</h1>
-    <div class="intro-sub fade-up delay-1">30 . 08 . 2026</div>
-  </div>
-  <div class="scroll-indicator fade-up delay-2">افتح الدعوة</div>
-</section>
-
-<!-- Section 2: Countdown (Clock) -->
-<section class="sec" id="sec-countdown">
-  <img src="assets/bg_clock.jpg" alt="" class="bg-img" style="object-position: center bottom;">
-  <div class="overlay"></div>
-  <div class="content">
-    <h2 class="cd-title fade-up">موعدنا يقترب...</h2>
-    <div class="countdown-wrapper fade-up delay-1">
-      <div class="cd-box">
-        <div class="cd-num" id="d">00</div>
-        <div class="cd-label">Days</div>
-      </div>
-      <div class="cd-box">
-        <div class="cd-num" id="h">00</div>
-        <div class="cd-label">Hours</div>
-      </div>
-      <div class="cd-box">
-        <div class="cd-num" id="m">00</div>
-        <div class="cd-label">Mins</div>
-      </div>
-      <div class="cd-box">
-        <div class="cd-num" id="s">00</div>
-        <div class="cd-label">Secs</div>
-      </div>
+    <!-- SCENE 00: BOOT SCREEN -->
+    <div id="boot-screen">
+        <div class="boot-content">
+            <div id="boot-cursor">_</div>
+            <div id="boot-text"></div>
+            <div id="boot-actions" class="hidden">
+                <button id="btn-enter" class="glitch-btn" data-text="ENTER">ENTER</button>
+                <button id="btn-leave" class="glitch-btn muted">LEAVE</button>
+            </div>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- Section 3: Venue (Palace) -->
-<section class="sec" id="sec-venue">
-  <img src="assets/bg_palace.jpg" alt="" class="bg-img" style="object-position: center top;">
-  <div class="overlay"></div>
-  <div class="content">
-    <h2 class="venue-name fade-up">HEAVEN HALL</h2>
-    <p class="venue-desc fade-up delay-1">حيث نكتب فصلاً جديداً من قصتنا<br><span style="font-size: 0.8em; color: #aaa; margin-top: 10px; display: inline-block;">محلة روح - طنطا - الغربية</span></p>
-    <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" class="btn-gold fade-up delay-2">استكشف المكان</a>
-  </div>
-</section>
+    <!-- MAIN SCROLL CONTAINER -->
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
 
-<!-- Section 4: Finale (Stars) -->
-<section class="sec" id="sec-finale">
-  <img src="assets/bg_stars.jpg" alt="" class="bg-img">
-  <div class="overlay"></div>
-  <div class="content">
-    <div class="fin-monogram fade-up">H+S</div>
-    <p class="fin-text fade-up delay-1">والحكاية لسه بتبدأ...</p>
-  </div>
-</section>
+            <!-- Luminous Thread -->
+            <svg id="thread" viewBox="0 0 100 10000" preserveAspectRatio="none">
+                <path id="thread-path" d="M50,0 Q50,500 50,1000 T50,2000 T50,3000 T50,4000 T50,5000 T50,6000 T50,7000 T50,8000 T50,9000 T50,10000" />
+            </svg>
 
-<script src="script.js"></script>
+            <!-- SCENE 01: THE NUMBER -->
+            <section id="scene-30" class="scene">
+                <!-- SVG path for '30' to zoom smoothly through the zero -->
+                <svg class="huge-30" viewBox="0 0 400 300">
+                    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Anton" font-size="280" fill="#F2F0E9">30</text>
+                </svg>
+            </section>
+
+            <!-- SCENE 02: THE FIRST REVEAL -->
+            <section id="scene-reveal" class="scene">
+                <div class="quiet-text" id="qt-1">Some nights are not meant to be ordinary.</div>
+                <div class="quiet-text" id="qt-2">This one is ours.</div>
+                <div class="letters-container">
+                    <div id="letter-h" class="giant-letter">H</div>
+                    <div id="letter-x" class="giant-letter cross">×</div>
+                    <div id="letter-s" class="giant-letter">S</div>
+                </div>
+                <div id="reveal-names" class="ar-names">حمدي × صفاء</div>
+            </section>
+
+            <!-- SCENE 04: THE DATE -->
+            <section id="scene-date" class="scene">
+                <div class="date-3d-container">
+                    <div class="date-layer l-bg">2026</div>
+                    <div class="date-layer l-mid">AUGUST</div>
+                    <div class="date-layer l-front">30.08</div>
+                </div>
+                <div id="living-countdown" class="living-countdown">
+                    <!-- JS will populate physical blocks here -->
+                </div>
+                <div class="date-footer">THE NIGHT BEGINS</div>
+            </section>
+
+            <!-- SCENE 05: THE CITY (Abstract) -->
+            <section id="scene-city" class="scene">
+                <div class="abstract-grid"></div>
+                <div class="floating-info i-1">30.08</div>
+                <div class="floating-info i-2">8:00 PM</div>
+                <div class="floating-info i-3">HEAVEN HALL</div>
+            </section>
+
+            <!-- SCENE 06: THE DESTINATION -->
+            <section id="scene-destination" class="scene">
+                <div class="arch-sign">
+                    <div class="sign-line">HEAVEN</div>
+                    <div class="sign-line">HALL</div>
+                </div>
+                <div class="entry-msg">YOU'RE EXPECTED.</div>
+                <div class="entry-date">30 AUGUST 2026</div>
+            </section>
+
+            <!-- SCENE 07: THE GLASS BLOCK -->
+            <section id="scene-glass" class="scene">
+                <div class="scene-3d-wrapper">
+                    <div id="glass-block" class="glass-block">
+                        <div class="face front">حمدي × صفاء</div>
+                        <div class="face back">30.08.2026</div>
+                        <div class="face right">HEAVEN HALL</div>
+                        <div class="face left">محلة روح — طنطا</div>
+                        <div class="face top"></div>
+                        <div class="face bottom">وجودكم هو الجزء اللي ناقص من الليلة.</div>
+                    </div>
+                </div>
+                <div class="drag-hint">[ DRAG TO EXPLORE ]</div>
+            </section>
+
+            <!-- SCENE 08: THE MAP -->
+            <section id="scene-map" class="scene">
+                <div class="marker-abstract">
+                    <div class="marker-core"></div>
+                    <div class="marker-ring"></div>
+                </div>
+                <div class="map-title">FIND HEAVEN</div>
+                <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" class="location-btn">OPEN LOCATION</a>
+            </section>
+
+            <!-- SCENE 09: THE HUMAN MOMENT -->
+            <section id="scene-human" class="scene">
+                <div class="human-content">
+                    <h1 class="human-names">حمدي & صفاء</h1>
+                    <p class="human-msg">مستنيينكم تشاركونا أول ليلة من حكاية لسه بتبدأ.</p>
+                    <div class="human-date">30 أغسطس 2026</div>
+                </div>
+            </section>
+
+            <!-- SCENE 10: THE FINAL TRANSFORMATION -->
+            <section id="scene-finale" class="scene">
+                <canvas id="particle-canvas"></canvas>
+                <div class="finale-content">
+                    <div class="fin-msg">YOUR ACCESS IS CONFIRMED.</div>
+                    <div class="fin-hs">H × S</div>
+                    <div class="fin-date">30.08.2026</div>
+                    <div class="fin-hall">HEAVEN HALL</div>
+                    <div class="fin-warn">Don't be late.</div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- AUDIO CONTROLS -->
+    <div id="audio-ctrl" class="audio-ctrl muted">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
 </body>
 </html>

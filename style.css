@@ -1,239 +1,287 @@
-﻿:root {
-  --gold: #D4AF37;
-  --gold-light: #F3E5AB;
-  --gold-dark: #997A00;
-  --text-dark: #2C2416;
-  --bg-dark: #050505;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Amiri', serif;
-  background-color: var(--bg-dark);
-  color: #fff;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+﻿/* 
+   HEAVEN // 30.08
+   Digital Art Experience 
+*/
+
+:root {
+    --black: #030303;
+    --graphite: #1a1a1a;
+    --offwhite: #F5F4F0;
+    --chrome: #E0E0E0;
+    --accent: #FF3300;
+    
+    --font-en: 'Anton', sans-serif;
+    --font-sys: 'Inter', sans-serif;
+    --font-ar: 'Noto Kufi Arabic', sans-serif;
 }
 
-/* Base Section */
-.sec {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  overflow: hidden;
-}
-.bg-img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-.overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 2;
-}
-.content {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 600px;
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
 }
 
-/* Animations */
-.fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.fade-up.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
-.delay-3 { transition-delay: 0.6s; }
-.delay-4 { transition-delay: 0.8s; }
-
-/* Section 1: Intro (Envelope) */
-#sec-intro .overlay {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(0,0,0,0.6));
-}
-.intro-names {
-  font-family: 'Amiri', serif;
-  font-size: clamp(3rem, 12vw, 5rem);
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  line-height: 1.2;
-}
-.intro-names span {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.5em;
-  color: var(--gold);
-  vertical-align: middle;
-  margin: 0 10px;
-}
-.intro-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 4vw, 1.5rem);
-  letter-spacing: 0.3em;
-  color: var(--gold-light);
-  margin-top: 1rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  animation: bounce 2s infinite;
-  color: rgba(255,255,255,0.7);
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-.scroll-indicator::after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent);
-  margin: 10px auto 0;
-}
-@keyframes bounce {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -10px); }
+html, body {
+    width: 100%; height: 100%;
+    background-color: var(--black);
+    color: var(--offwhite);
+    font-family: var(--font-sys);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Section 2: Countdown (Clock) */
-#sec-countdown .overlay {
-  background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+/* Hide scrollbar for seamless experience */
+::-webkit-scrollbar { display: none; }
+
+/* -------------------------------------
+   SCENE 00: BOOT SCREEN
+------------------------------------- */
+#boot-screen {
+    position: fixed; inset: 0;
+    background: var(--black);
+    z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 1.5s ease;
 }
-.cd-title {
-  font-size: clamp(1.5rem, 6vw, 2.5rem);
-  color: var(--gold-light);
-  margin-bottom: 3rem;
-  text-shadow: 0 2px 15px rgba(212, 175, 55, 0.3);
+.boot-content {
+    text-align: center; font-family: var(--font-sys);
+    font-size: 11px; letter-spacing: 0.3em;
+    color: var(--chrome);
 }
-.countdown-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: clamp(10px, 3vw, 25px);
-  direction: ltr;
+#boot-cursor {
+    animation: blink 1s step-end infinite;
+    font-size: 14px;
 }
-.cd-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(10, 10, 10, 0.6);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 50%;
-  width: clamp(70px, 20vw, 110px);
-  height: clamp(70px, 20vw, 110px);
-  justify-content: center;
-  box-shadow: 0 0 25px rgba(0,0,0,0.8), inset 0 0 15px rgba(212, 175, 55, 0.1);
-  backdrop-filter: blur(4px);
+@keyframes blink { 50% { opacity: 0; } }
+
+#boot-actions { margin-top: 40px; display: flex; gap: 20px; }
+#boot-actions.hidden { opacity: 0; pointer-events: none; }
+.glitch-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.2);
+    color: var(--offwhite); padding: 10px 30px;
+    font-family: var(--font-sys); font-size: 10px; letter-spacing: 0.2em;
+    cursor: pointer; transition: all 0.3s ease; text-transform: uppercase;
 }
-.cd-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.8rem, 6vw, 2.8rem);
-  color: #fff;
-  line-height: 1;
-}
-.cd-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.6rem, 2vw, 0.8rem);
-  color: var(--gold);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 5px;
+.glitch-btn:hover { border-color: var(--offwhite); background: var(--offwhite); color: var(--black); }
+.glitch-btn.muted { opacity: 0.3; border-color: transparent; }
+
+/* -------------------------------------
+   LAYOUT & THREAD
+------------------------------------- */
+#smooth-wrapper { width: 100%; overflow: hidden; }
+#smooth-content { width: 100%; }
+
+.scene {
+    width: 100%; height: 100vh;
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    overflow: hidden;
 }
 
-/* Section 3: Venue (Palace) */
-#sec-venue .overlay {
-  background: linear-gradient(to bottom, var(--bg-dark) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%);
+#thread {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100vh;
+    z-index: 0; pointer-events: none;
 }
-.venue-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 10vw, 4.5rem);
-  color: var(--gold-light);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-}
-.venue-desc {
-  font-size: clamp(1rem, 4vw, 1.4rem);
-  color: #fff;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-}
-.btn-gold {
-  display: inline-block;
-  padding: 12px 35px;
-  border: 1px solid var(--gold);
-  color: var(--gold-light);
-  text-decoration: none;
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
-.btn-gold:hover {
-  background: var(--gold);
-  color: var(--text-dark);
+#thread-path {
+    fill: none; stroke: var(--accent); stroke-width: 0.5px;
+    opacity: 0; /* JS controls this */
 }
 
-/* Section 4: Finale (Stars) */
-#sec-finale .overlay {
-  background: linear-gradient(to top, var(--bg-dark) 0%, rgba(0,0,0,0.2) 100%);
-}
-.fin-monogram {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(4rem, 15vw, 8rem);
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.6);
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 30px rgba(255,255,255,0.2);
-}
-.fin-text {
-  font-size: clamp(1.2rem, 5vw, 1.8rem);
-  color: var(--gold-light);
-  margin-bottom: 2rem;
+/* -------------------------------------
+   SCENE 01: THE NUMBER
+------------------------------------- */
+#scene-30 { z-index: 10; background: var(--black); }
+.huge-30 {
+    width: 100vw; height: 100vh;
+    transform-origin: 51% 50%; /* Target the center of the 0 */
 }
 
-/* Audio Button */
-#audio-btn {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  color: var(--gold);
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  cursor: pointer;
-  backdrop-filter: blur(5px);
-  transition: all 0.3s;
+/* -------------------------------------
+   SCENE 02: REVEAL
+------------------------------------- */
+#scene-reveal { z-index: 9; }
+.quiet-text {
+    position: absolute; top: 30%;
+    font-family: var(--font-sys); font-size: 12px;
+    letter-spacing: 0.1em; color: rgba(245,244,240,0.5);
+    opacity: 0;
 }
-#audio-btn.playing {
-  background: rgba(212, 175, 55, 0.2);
-  border-color: var(--gold);
+.letters-container {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10vw;
+}
+.giant-letter {
+    font-family: var(--font-en); font-size: clamp(8rem, 20vw, 15rem);
+    color: var(--offwhite); line-height: 1;
+}
+.giant-letter.cross { font-size: clamp(3rem, 8vw, 6rem); color: var(--accent); opacity: 0; }
+.ar-names {
+    position: absolute; bottom: 20%;
+    font-family: var(--font-ar); font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700; opacity: 0;
+}
+
+/* -------------------------------------
+   SCENE 04: DATE 3D
+------------------------------------- */
+.date-3d-container {
+    position: relative;
+    width: 100%; height: 50vh;
+    display: flex; align-items: center; justify-content: center;
+    perspective: 1000px;
+}
+.date-layer {
+    position: absolute;
+    font-family: var(--font-en);
+    line-height: 1;
+}
+.l-bg { font-size: 10vw; color: rgba(255,255,255,0.1); transform: translateZ(-500px); }
+.l-mid { font-size: 15vw; color: rgba(255,255,255,0.3); transform: translateZ(-200px); }
+.l-front { font-size: 25vw; color: var(--offwhite); transform: translateZ(0); }
+
+.living-countdown {
+    display: flex; gap: 20px; font-family: var(--font-sys);
+    font-size: 12px; letter-spacing: 0.2em; color: var(--accent);
+    margin-top: 5vh; opacity: 0;
+}
+.date-footer {
+    position: absolute; bottom: 10%;
+    font-size: 10px; letter-spacing: 0.4em; opacity: 0.5;
+}
+
+/* -------------------------------------
+   SCENE 05: CITY
+------------------------------------- */
+#scene-city { background: var(--graphite); }
+.abstract-grid {
+    position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 5vw 5vw;
+    transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+}
+.floating-info {
+    position: absolute; font-family: var(--font-sys); font-size: 10px;
+    letter-spacing: 0.3em; color: var(--chrome); opacity: 0;
+}
+.i-1 { top: 20%; left: 10%; }
+.i-2 { top: 50%; right: 10%; }
+.i-3 { bottom: 20%; left: 20%; }
+
+/* -------------------------------------
+   SCENE 06: DESTINATION
+------------------------------------- */
+.arch-sign { text-align: center; }
+.sign-line {
+    font-family: var(--font-en); font-size: clamp(4rem, 15vw, 12rem);
+    line-height: 0.85; color: var(--offwhite);
+    opacity: 0; transform: translateY(50px);
+}
+.entry-msg {
+    margin-top: 5vh; font-size: 12px; letter-spacing: 0.5em; color: var(--accent); opacity: 0;
+}
+.entry-date {
+    margin-top: 1vh; font-size: 10px; letter-spacing: 0.3em; opacity: 0.5; opacity: 0;
+}
+
+/* -------------------------------------
+   SCENE 07: GLASS BLOCK
+------------------------------------- */
+.scene-3d-wrapper {
+    perspective: 1200px; width: 100%; height: 60vh;
+    display: flex; align-items: center; justify-content: center;
+}
+.glass-block {
+    width: clamp(200px, 60vw, 300px);
+    height: clamp(300px, 80vw, 450px);
+    transform-style: preserve-3d;
+    cursor: grab;
+}
+.glass-block:active { cursor: grabbing; }
+.face {
+    position: absolute; width: 100%; height: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 20px; font-family: var(--font-sys); font-size: 14px; letter-spacing: 0.2em;
+    box-shadow: inset 0 0 40px rgba(255,255,255,0.02);
+}
+.face.front  { transform: translateZ(25px); font-family: var(--font-ar); font-weight: 700; font-size: 24px; letter-spacing: 0; }
+.face.back   { transform: rotateY(180deg) translateZ(25px); color: var(--accent); }
+.face.right  { transform: rotateY(90deg) translateZ(150px); width: 50px; left: calc(50% - 25px); font-size: 10px; }
+.face.left   { transform: rotateY(-90deg) translateZ(150px); width: 50px; left: calc(50% - 25px); font-family: var(--font-ar); font-size: 10px; writing-mode: vertical-rl; letter-spacing: 0; }
+.face.top    { transform: rotateX(90deg) translateZ(225px); height: 50px; top: calc(50% - 25px); }
+.face.bottom { transform: rotateX(-90deg) translateZ(225px); height: 50px; top: calc(50% - 25px); font-family: var(--font-ar); font-size: 8px; letter-spacing: 0; }
+.drag-hint { font-size: 9px; letter-spacing: 0.3em; opacity: 0.4; margin-top: 20px; }
+
+/* -------------------------------------
+   SCENE 08: MAP
+------------------------------------- */
+.marker-abstract {
+    position: relative; width: 40px; height: 40px; margin-bottom: 40px;
+}
+.marker-core {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+}
+.marker-ring {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border: 1px solid var(--accent); border-radius: 50%;
+    animation: ping 2s infinite cubic-bezier(0, 0, 0.2, 1);
+}
+@keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
+
+.map-title { font-size: 10px; letter-spacing: 0.5em; margin-bottom: 30px; }
+.location-btn {
+    border: 1px solid var(--offwhite); color: var(--offwhite);
+    padding: 15px 40px; text-decoration: none; font-size: 11px; letter-spacing: 0.2em;
+    transition: all 0.4s;
+}
+.location-btn:hover { background: var(--offwhite); color: var(--black); }
+
+/* -------------------------------------
+   SCENE 09: HUMAN
+------------------------------------- */
+#scene-human { background: var(--offwhite); color: var(--black); }
+.human-content { text-align: center; }
+.human-names {
+    font-family: var(--font-ar); font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 700; margin-bottom: 30px;
+}
+.human-msg {
+    font-family: var(--font-ar); font-size: clamp(1rem, 4vw, 1.5rem);
+    max-width: 80%; margin: 0 auto 40px; line-height: 1.8; opacity: 0.8;
+}
+.human-date { font-family: var(--font-ar); font-size: 14px; opacity: 0.5; }
+
+/* -------------------------------------
+   SCENE 10: FINALE
+------------------------------------- */
+#scene-finale { background: var(--black); }
+#particle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+.finale-content { position: relative; z-index: 2; text-align: center; }
+.fin-msg { font-size: 10px; letter-spacing: 0.3em; color: var(--accent); margin-bottom: 4vh; opacity: 0;}
+.fin-hs { font-family: var(--font-en); font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 2vh; opacity: 0;}
+.fin-date, .fin-hall { font-size: 12px; letter-spacing: 0.4em; opacity: 0.5; margin-bottom: 1vh; opacity: 0;}
+.fin-warn { margin-top: 10vh; font-size: 10px; letter-spacing: 0.2em; opacity: 0.3; opacity: 0;}
+
+/* -------------------------------------
+   AUDIO CTRL
+------------------------------------- */
+.audio-ctrl {
+    position: fixed; top: 20px; right: 20px; z-index: 9999;
+    display: flex; gap: 3px; align-items: flex-end;
+    height: 15px; cursor: pointer; padding: 10px;
+}
+.audio-ctrl .bar { width: 2px; background: var(--offwhite); transition: height 0.2s; }
+.audio-ctrl.muted .bar { height: 2px !important; }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .glass-block { width: 65vw; height: 95vw; }
+    .face.right { width: 40px; left: calc(50% - 20px); }
+    .face.left { width: 40px; left: calc(50% - 20px); }
+    .face.top, .face.bottom { height: 40px; top: calc(50% - 20px); }
 }
