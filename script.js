@@ -60,6 +60,13 @@ function startJourney() {
     
     initSFX(); // Unlock SFX context
     
+    // Hide the massive start button
+    const startBtn = document.getElementById('start-journey-btn');
+    if (startBtn) {
+        startBtn.style.opacity = '0';
+        setTimeout(() => startBtn.style.visibility = 'hidden', 800);
+    }
+    
     // Play background music
     if(!playing && bgm) { 
         let playPromise = bgm.play();
@@ -72,9 +79,10 @@ function startJourney() {
     }
     
     // Auto-Scroll the page
+    // autoKill: false ensures micro-swipes on mobile don't randomly cancel the cinematic video scroll
     gsap.to(window, {
         duration: 9,
-        scrollTo: { y: "max", autoKill: true },
+        scrollTo: { y: "max", autoKill: false },
         ease: "power2.inOut"
     });
 }
@@ -94,10 +102,12 @@ mBtn.addEventListener('click', (e) => {
     }
 });
 
-// Trigger journey on first interaction
-['touchstart', 'click'].forEach(evt => {
-    document.addEventListener(evt, startJourney, { once: true });
-});
+// Trigger journey exclusively from the start button overlay
+const startBtnOverlay = document.getElementById('start-journey-btn');
+if (startBtnOverlay) {
+    startBtnOverlay.addEventListener('click', startJourney, { once: true });
+    startBtnOverlay.addEventListener('touchstart', (e) => { e.preventDefault(); startJourney(); }, { once: true, passive: false });
+}
 
 // ── INITIAL SETUP ──
 gsap.set("#orb-h", { left: "-10%" });

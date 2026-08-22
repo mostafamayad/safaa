@@ -27,19 +27,34 @@ body {
 }
 
 /* ── UI ELEMENTS ── */
-.scroll-instruction {
-    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-    z-index: 100; opacity: 0.8; color: var(--gold-light); font-size: 0.8rem; letter-spacing: 2px;
-    pointer-events: none;
+#start-journey-btn {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    background: rgba(3, 6, 20, 0.9);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
 }
-.scroll-line {
-    width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollSlide 2s infinite;
+.start-content {
+    padding: 20px 40px;
+    border-radius: 50px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    animation: pulseBtn 2s infinite ease-in-out;
 }
-@keyframes scrollSlide {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(20px); opacity: 0; }
+.start-content span {
+    font-family: var(--f-title);
+    font-size: clamp(2rem, 8vw, 3rem);
+    color: var(--gold-light);
+    text-shadow: 0 0 15px rgba(0,0,0,0.9);
+}
+@keyframes pulseBtn {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+    50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(212,175,55,0.7); }
+    100% { transform: scale(1); box-shadow: 0 0 20px rgba(212,175,55,0.2); }
 }
 
 .music-btn {
