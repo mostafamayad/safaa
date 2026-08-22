@@ -36,10 +36,20 @@ if(bgm) bgm.volume = 0.5;
 
 function startMusic() {
     if(!playing && bgm) { 
-        bgm.play().then(() => {
-            playing = true; 
-            mBtn.classList.add('playing'); 
-        }).catch(e => console.log('Autoplay prevented:', e));
+        let playPromise = bgm.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                playing = true; 
+                mBtn.classList.add('playing'); 
+                
+                // Only remove listeners ON SUCCESS (fixes Safari blocking the first touchstart)
+                ['touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
+                    document.removeEventListener(evt, playOnInteraction);
+                });
+            }).catch(e => {
+                console.log('Safari blocked autoplay, waiting for next touch...');
+            });
+        }
     }
 }
 
@@ -58,11 +68,11 @@ mBtn.addEventListener('click', (e) => {
 // Play immediately on first touch or click anywhere
 function playOnInteraction() {
     startMusic();
-    document.removeEventListener('touchstart', playOnInteraction);
-    document.removeEventListener('click', playOnInteraction);
 }
-document.addEventListener('touchstart', playOnInteraction, { once: true });
-document.addEventListener('click', playOnInteraction, { once: true });
+// Attach to multiple events, don't use {once: true} because Safari might block the first one
+['touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
+    document.addEventListener(evt, playOnInteraction);
+});
 
 // ── INITIAL SETUP ──
 gsap.set("#orb-h", { left: "-10%" });
